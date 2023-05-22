@@ -1,0 +1,319 @@
+%!TEX root = main.tex
+
+\section[Shared responses]{Inferring consequences when observations and consequences share responses}\label{sec:evaluating_decisions}
+
+Returning to the example of body mass index and mortality raised in the introduction, we will present an implausible but relatively simple account of how a decision maker might leverage observations to draw conclusions about how their options that are known to affect body mass index can affect mortality. In particular, they may assume that whether or not an individual dies during the study period is related by a ``fixed but unknown stochastic function'' to their body mass index at the start of the study period -- and this is true for individuals who were part of the observation set and individuals who may be influenced by the decision maker alike. 
+
+In more detail, suppose our decision maker has a decision model $(\prob{P}_{\cdot}, (C,\sigalg{C}), (\Omega,\sigalg{F}))$ and a sequences of random variable pairs $(\RV{X}_i,\RV{Y}_i)_{i\in [m+n]}$ where $[m+n]$ is the set $\{1,2,...,m+n\}$ where $\RV{X}_i$ is an individual's body mass index and $\RV{Y}_i$ is a variable taking values in $\{0,1\}$ indicating whether or not they died during the follow-up period. The first $m$ pairs in the sequence are observations unaffected by the decision maker and the next $n$ pairs are affected by their choice. The decision maker wants to learn something from the uncontrolled pairs of observations $(\RV{X}_{[m]},\RV{Y}_{[m]})$ to help make a decision that will promote good outcomes among the controlled pairs $(\RV{X}_{[m+1,n]},\RV{Y}_{[m+1,n]})$. In order to do this, the decision maker might assume:
+\begin{itemize}
+    \item They already know how their choices determine the marginal distribution $\prob{P}_\alpha^{\RV{X}_i}$ for $i>m$
+    \item There is an unknown \emph{response} $\RV{H}$ taking values in $\Delta(Y)^X$ shared by all pairs $(\RV{X}_i,\RV{Y}_i)$, $i\in [m+n]$ that maps an individual's body mass index to their risk of death in the followup period; that is, $\prob{P}_C^{\RV{Y}_i|\RV{D}_i\RV{H}}=\prob{P}_C^{\RV{Y}_j|\RV{D}_j\RV{H}}=\RV{H}$ for all $i,j\in [m+n]$
+    \item For all $i$, whether or not an individual dies $\RV{Y}_i$ is independent of $(\RV{X}_j,\RV{Y}_j)_{j\neq i}$ conditional on $\RV{X}_i$ and $\RV{H}$; for all $i$, $\RV{Y}_i\CI^e_{\prob{P}_\cdot} (\mathrm{id}_C,\RV{X}_{[m+n]\setminus \{i\}},\RV{Y}_{[m+n]\setminus \{i\}})|(\RV{X}_i,\RV{H})$
+\end{itemize}
+
+In this case, the decision maker can use the relationship observed in the first $m$ pairs of observations $(x_{[m]},y_{[m]})$ to compute a posterior distribution $\prob{P}_C^{\RV{H}|\RV{D}_{[m]}\RV{Y}_{[m]}}$ and thereby estimate the effects of their options on $\RV{Y}_i$, $i>m$
+\begin{align}
+    \prob{P}_\alpha^{\RV{Y}_i} (A) &= \int_{\Delta(Y)^X}\int_X \prob{P}_C^{\RV{Y}|\RV{XH}}(A|x,h) \prob{P}_\alpha^{\RV{X}_i}(\mathrm{d}x)\prob{P}_C^{\RV{H}|\RV{X}_{[m]}\RV{Y}_{[m]}}(\mathrm{d}h|x_{[m]},y_{[m]})\\
+    &= \int_{\Delta(Y)^X}\int_X h(A|x) \prob{P}_\alpha^{\RV{X}_i}(\mathrm{d}x)\prob{P}_C^{\RV{H}|\RV{X}_{[m]}\RV{Y}_{[m]}}(\mathrm{d}h|x_{[m]},y_{[m]})
+\end{align}
+
+Once again, the key assumption enabling this deduction is that the same response $\RV{H}$ is shared by both the observations $(\RV{X}_i,\RV{Y}_i)$, $i\in [m]$ and the consequences $(\RV{X}_j,\RV{Y}_j)$, $j>m$. Why might we buy this assumption? One reason is that the system we're modelling is like an engineered system. In such systems, significant effort is often invested to ensure that components respond to the system's state in reliable and predictable ways, and as a result we might consider it likely that components remain predictable if we act on the system's state. The relationship between body mass index and mortality does not arise in such a system, and so this justification is unavailable -- but this does not imply that we need to reject the assumption either.
+
+While engineered systems might be designed just so that their components exhibit repeatable responses, we might suppost that most systems exhibit regular response relationships if we knew exactly where to look for these relationships. We frequently observe predictable behaviour in non-engineered systems from the weather to people's online shopping. This predictable behaviour is a result, perhaps, of observing systems that respond to inputs in regular ways, primed with regular inputs. This might be so, but it tells us little about whether particular pairs of variables share identical probabilistic responses. We will discuss this intuition further in Section \ref{sec:precedent}.
+
+In this section we explore an alternative way to view this assumption. We draw inspiration from De Finetti's work that furnished us with an alternative view of the assumption that a sequence of variables is independent and identically distributed with an unknown distribution \citet{de_finetti_foresight_1992}. De Finetti showed how this assumption is equivalent to the assumption that someone judges that their predictive model for this sequence should not be changed if the sequence is rearranged, an assumption known as \emph{exchangeability}. Exchangeability is inappropriate for decision models, because the fundamental premise of using formal models to assist decision making is that the decision maker's choices lead to differences in the distribuitons of some variables, so swapping these controlled variables with other variables should lead to a change in the model we used to assess consequences.  
+
+We explore a generalisation of De Finetti's equivalence more appropriate for decision making models. Instead of examining sequences of independent and identically distributed (IID) variables, we examine sequences of variable pairs that share independent and identical responses of the kind we have already discussed. Where IID sequences are associated models that are unchanged by arbitrary variable swaps, we characterise sequences of pairs with independent and identical responses as being unchanged by swaps of infinite subsequences of pairs. An informal statment of this result is that an analyst accepting an assumption of independent and identical responses is tantamount to announcing that they are sure their results would be unchanged whether their data was derived from an experiment or passive observation.
+
+In the example presented here -- concerning the relationship between body mass index and mortality -- we consider such an assumption to be unreasonable. In fact, we argue that this result suggests that an assumption of independent and identical responses is untenable in many situations. If, for example, an analyst believes that there would be any benefit in checking their results against experimental data, then our result indicates that this attitude amounts to a rejection of the assumption of independent and idential responses. While we argue on this basis that the assumption of independent and identical responses is often untenable, we argue in Section \ref{sec:precedent} that a special case of this assumption we refer to as \emph{precedent} is more plausible.
+
+\subsection[Response functions]{Conditionally independent and identical responses}\label{sec:response_functions}
+
+We formalise decision models with ``shared but unknown responses'' as sequential models of variable pairs with \emph{conditionally independent and identical responses} (CIIRs). A sequence of pairs $(\RV{D}_i,\RV{Y}_i)_{i\in \mathbb{N}}$ share conditionally independent and identical responses if there is an unknown stochastic function $\RV{H}$ taking values in $\Delta(Y)^D$ -- in the set of maps from $D$ to probability distributions over $Y$ -- such that every output $\RV{Y}_i$ ``responds to'' $\RV{D}_i$ according to the same $\RV{H}$. While our example featured a decision maker who has prior knowledge about how to control some of the inputs $\RV{D}_i$, this is a separate assumption and is not required by the assumption of CIIR pairs.
+
+We define sequential input-output models as a shorthand for a decision model along with a sequence of variable pairs.
+
+\begin{definition}[Sequential input-output model]\label{def:seq_io}
+A decision model $(\prob{P}_{\cdot}, (C,\sigalg{C}), (\Omega,\sigalg{F}))$ and two sequences of variables $\RV{Y}:=(\RV{Y}_i)_{i\in \mathbb{N}}$ and $\RV{D}:=(\RV{D}_i)_{i\in\mathbb{N}}$ is a sequential input-output model, which we specify with the shorthand $(\prob{P}_\cdot,\RV{D},\RV{Y})$.
+\end{definition}
+
+The formal definition of CIIRs follows. In this work we consider the response $\RV{H}$ to be a random variable.
+
+\begin{definition}[Conditionally independent and identical responses]\label{def:cii_rf}
+Given a sequential input-output model $(\prob{P}_\cdot,\RV{D},\RV{Y})$, the $(\RV{D}_i,\RV{Y}_i)$ pairs are related by \emph{independent and identical responses conditional on} $\RV{H}$ if for all $i$, $\RV{Y}_i\CI^e_{\prob{P}_C} (\RV{D}_{[1,i)},\RV{Y}_{[1,i)})|(\RV{D}_i,\RV{H},\text{id}_C)$ and $\prob{P}_\alpha^{\RV{Y}_i|\RV{D}_i\RV{H}}\overset{\prob{P}_\alpha^{\RV{D}_i|\RV{H}}}{\cong}\prob{P}_\alpha^{\RV{Y}_j|\RV{D}_j\RV{H}}$ for all $i,j$.
+\end{definition}
+
+Definition \ref{def:cii_rf} asserts that there are versions of all the conditional distributions $\prob{P}_\alpha^{\RV{Y}_i|\RV{D}_i\RV{H}}$ that are pairwise congruent, and Theorem \ref{th:repr_cond} shows that this is sufficient for the existence of a single conditional distribution that is a version of $\prob{P}_\alpha^{\RV{Y}_i|\RV{D}_i\RV{H}}$ for all $i$.
+
+\begin{theorem}[Existence of representative conditional distribution]\label{th:repr_cond}
+Given a sequential input-output model $(\prob{P}_\cdot,\RV{D},\RV{Y})$, if the $(\RV{D}_i,\RV{Y}_i)$ pairs are related by independent and identical responses conditional on $\RV{H}$, then for every $\alpha$, $\prob{P}_\alpha$-almost all $h\in H$ there is a representative conditional distribution $h^Y_X$ such that $\prob{P}_\alpha^{\RV{Y}_i|\RV{X}_i\RV{H}}(\cdot|h)\overset{\prob{P}_\alpha^{\RV{D}_i|\RV{H}}(\cdot|h)}{\cong} h^Y_X$ for all $i$.
+
+We refer to the function $\RV{H}^Y_X:h\mapsto h^Y_X$ as a \emph{representative conditional distribution}.
+\end{theorem}
+
+\begin{proof}
+Fix $h$ and take $h^Y_{X,i}:=\prob{P}_\alpha^{\RV{Y}_i|\RV{X}_i\RV{H}}(\cdot|\cdot,h)$ to be an arbitrary version of the conditional distribution for all $i$.
+
+For $i,j\in \mathbb{N}$, take $S_{ij} := \{x|h^Y_{x,i}\text{ is not a version of }\prob{P}_\alpha^{\RV{Y}_j|\RV{X}_j\RV{H}}(\cdot|\cdot,h)\}$. Note that $S_i:= \cup_{j\in \mathbb{N}} S_{ij}$ is a countable union of sets of $\prob{P}_\alpha^{\RV{X}_i|\RV{H}}(\cdot|h)$-measure 0, hence is also a set of $\prob{P}_\alpha^{\RV{X}_i|\RV{H}}(\cdot|h)$-measure 0.
+
+Define
+\begin{align}
+    h^Y_X(A|x) := \sum_{i\in \mathh{N}} \mathds{1}_{S_i^\complement\setminus \cup_{j\in[i]}S_j^\complement}(x) h^Y_{X,i}(A|x)
+\end{align}
+
+By construction, $h^Y_X$ differs from each $h^Y_{X,i}$ by a measure 0 set with respect to $\prob{P}_\alpha^{\RV{X}_i|\RV{H}}(\cdot|h)$. Hence it is a version of $\prob{P}_\alpha^{\RV{Y}_i|\RV{X}_i\RV{H}}(\cdot|h)$ for every $i$.
+\end{proof}
+
+In general, the definition for conditionally independent and identical responses only requires that the outputs $\RV{Y}_i$ are independent of \emph{previous} inputs and outputs conditional on $\RV{H}$ and $\RV{D}_i$. If $\RV{D}_i$ is selected based on previous data, then in general there may be relationships between $\RV{D}_j$ and $\RV{Y}_i$ for $j>i$ even after conditioning on $\RV{D}_i$ and $\RV{H}$. However, for present purposes we make the additional simplifying assumption that inputs are \emph{weakly data-independent}, which means that conditional on $\RV{H}$ and past inputs $\RV{D}_{[1,i]}$, $\RV{Y}_i$ is also independent of all future inputs. Generalising our theory to data-dependent inputs is an open question.
+
+\begin{definition}[Weakly data-independent]\label{def:weak_di}
+A sequential input-output model $(\prob{P}_C,\RV{D},\RV{Y})$ with independent and identical responses conditional on $\RV{H}$ is weakly data-independent if $\RV{Y}_i\CI^e_{\prob{P}_C} \RV{D}_{\mathbb{N}\setminus\{i\}}|(\RV{D}_{i},\RV{H},\text{id}_C)$.
+\end{definition}
+
+\subsection[Conditional probability symmetries]{Symmetries of sequential conditional probabilities}\label{sec:ccontracibility}
+
+Given the previously mentioned sequences $\RV{D}$ and $\RV{Y}$, the decision maker has for each option $\alpha\in C$ a conditional probability $\prob{P}_\alpha^{\RV{Y}|\RV{D}}$. An obvious symmetry of this conditional probability we could consider is symmetry to paired permutations of $\RV{D}$ and $\RV{Y}$. That is, given any permutation $\rho:\mathbb{N}\to \mathbb{N}$, define $\RV{Y}_\rho:=(\RV{Y}_{\rho(i)})_{i\in\mathbb{N}}$ and $\RV{D}_{\rho}$ similarly. Then symmetry to paired permutations means for all $\alpha$, $\rho$
+
+\begin{align}
+    \prob{P}_\alpha^{\RV{Y}|\RV{D}} &= \prob{P}_\alpha^{\RV{Y}_\rho|\RV{D}_\rho}
+\end{align}
+
+This symmetry is reminiscent of exchangeability, and in Theorem \ref{lem:exch_prod_ciid} we show that it implies that the $(\RV{D}_i,\RV{Y}_i)$ share conditionally independent and identical responses. However, the converse is not true, as Example \ref{ex:no_swapping} shows.
+
+\begin{example}\label{ex:no_swapping}
+Suppose there is a machine with two arms $D=\{0,1\}$, one of which always pays out \$100 $50\%$ of the time and nothing otherwise, and the other that pays out nothing. A decision maker (DM) doesn't know which is which, but DM watches a sequence of people operate the machine. The first person in the sequence was told yesterday exactly which arm is good, and most likely remembers. The second one has no idea which arm is good, and does not observe the first person's choice. The DM is sure that they all want the money, so the first person will pull the good arm $1-\epsilon$ of the time, while the second person will pull the good arm $50\%$ of the time. The response $\RV{H}$ takes values that can be summarised as ``0 is good'' and ``1 is good'' (which we'll just refer to as $\{0,1\}$), and the DM assigns 50\% probability to each initially. Then
+\begin{align}
+    \prob{P}_C^{\RV{Y}_2|\RV{D}_2}(100|1) &= \prob{P}_C^{\RV{Y}_2|\RV{D}_2\RV{H}}(100|1,0)\prob{P}_C^{\RV{H}|\RV{D}_2}(0|1) + \prob{P}_C^{\RV{Y}_2|\RV{D}_2\RV{H}}(100|1,1)\prob{P}_C^{\RV{H}|\RV{D}_2}(1|1)\\
+    &= 0\cdot 0.5 + 0.5\cdot 0.5\\
+    &= 0.25
+\end{align}
+while
+\begin{align}
+    \prob{P}_C^{\RV{Y}_1|\RV{D}_1}(100|1) &= \prob{P}_C^{\RV{Y}_1|\RV{D}_1\RV{H}}(100|1,0)\prob{P}_C^{\RV{H}|\RV{D}_1}(0|1) + \prob{P}_C^{\RV{Y}_1|\RV{D}_1\RV{H}}(100|1,1)\prob{P}_C^{\RV{H}|\RV{D}_1}(1|1)\\
+    &= 0\cdot\epsilon + 0.5 (1-\epsilon)\\
+    &= 0.5(1-\epsilon)\\
+    &\neq \prob{P}_C^{\RV{Y}_2|\RV{D}_2}(100|1)
+\end{align}
+
+\end{example}
+
+Example \ref{ex:no_swapping} motivates the weaker symmetry we call \emph{exchange commutativity}. The key difference is that exchange commutativity allows for the permutability of pairs after conditioning on some arbitrary variable $\RV{W}$. A sequential input-output model $(\prob{P}_C,\RV{D},\RV{Y})$ is exchange commutative if there is some variable $\RV{W}$ such that the conditional $\prob{P}_\alpha^{\RV{Y}|\RV{WD}}$ is symmetric to paired swaps of $\RV{Y}$ and $\RV{D}$.
+
+\begin{definition}[Exchange commutativity]\label{def:caus_exch}
+Given a sequential input-output model $(\prob{P}_C,\RV{D},\RV{Y})$ along with some $\RV{W}:\Omega\to W$, we say $(\prob{P}_C,\RV{D},\RV{Y})$ \emph{commutes with exchange} over $\RV{W}$ if for all finite permutations $\rho:\mathbb{N}\to\mathbb{N}$ and all $\alpha\in C$
+\begin{align}
+    \prob{P}_\alpha^{\RV{Y}|\RV{WD}} &=  \prob{P}_\alpha^{\RV{Y}_\rho|\RV{WD}_\rho}
+\end{align}
+We say $(\prob{P}_C,\RV{D},\RV{Y})$ commutes with exchange if there is some $\RV{W}$ such that $(\prob{P}_C,\RV{D},\RV{Y})$ commutes with exchange over $\RV{W}$.   
+\end{definition}
+
+A second regularity condition we will consider can be roughly understood as the idea that $\RV{Y}_i$ doesn't ``depend on'' $\RV{D}_j$ for $j\neq i$. As Example \ref{ex:no_swapping} suggests, this cannot be an assumption that $\RV{Y}_i$ doesn't depend on $\RV{D}_j$ unconditionally; $\RV{D}_j$ could, after all, offer some evidence about the state of the shared response $\RV{H}$. Instead, we assume that $\RV{Y}_i$ doesn't depend on non-corresponding $\RV{X}_j$ after conditioning on some auxiliary $\RV{W}$.
+
+\begin{definition}[Locality]\label{def:caus_cont}
+Given a sequential input-output model $(\prob{P}_C,\RV{D},\RV{Y})$ along with some $\RV{W}:\Omega\to W$, the model is \emph{local} over $\RV{W}$ if for all $\alpha\in C$, $n\in \mathbb{N}$, $\RV{Y}_i\CI^e_{\prob{P}_C} \RV{X}_{\{i,\infty)}|(\RV{W},\RV{X}_i,\text{id}_C)$. If there is some $\RV{W}$ such that $(\prob{P}_C,\RV{D},\RV{Y})$ is local over $\RV{W}$ then we say $(\prob{P}_C,\RV{D},\RV{Y})$ is local.
+\end{definition}
+
+If an input-output model is both exchange commutative and local, then we say it is \emph{input-output contractible}. This term is chosen because such a model is unchanged by contractions of the input and output indices - see Theorem \ref{th:equal_of_condits}.
+
+\begin{definition}[Input-output contractibility]\label{def:ccontract}
+A sequential input-output model $(\prob{P}_\cdot,\RV{D},\RV{Y})$ along with some $\RV{W}:\Omega\to W$ is \emph{input-output contractible} (IO contractible) over $\RV{W}$ if it is local and commutes with exchange.
+\end{definition}
+
+\begin{theorem}[Equality of equally sized subsequence conditionals]\label{th:equal_of_condits}
+Given a sequential input-output model $(\prob{P}_C,\RV{D},\RV{Y})$ and some $\RV{W}$, $\prob{P}_\alpha^{\RV{Y}|\RV{WD}}$ is IO contractible over $\RV{W}$ if and only if for all subsequences $A,B\subset \mathbb{N}$ with $|A|=|B|$ and for every $\alpha$
+\begin{align}
+    \prob{P}_\alpha^{\RV{Y}_A|\RV{WD}_{A,\mathbb{N}\setminus A}} &= \prob{P}_\alpha^{\RV{Y}_B|\RV{WD}_{B,\mathbb{N}\setminus B}}\\
+    &= \prob{P}_\alpha^{\RV{Y}_A|\RV{WD}_A}\otimes \text{del}_{D^{|\mathbb{N}\setminus A|}}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+Appendix \ref{sec:equal_condits}
+\end{proof}
+
+Appendix \ref{app:examples_symmetries} sets out two additional properties of these symmetries. Example \ref{ex:no_implication} shows that neither locality nor exchange commutativity is implied by the other, and Example \ref{ex:interference_w_locality} shows that locality by itself does not rule out everything that we might intuitively describe as ``interference'' between pairs.
+
+\subsection[Representation]{Representation of IO contractible models}\label{sec:rep_theorem}
+
+In this section, we state Theorem \ref{th:ciid_rep_kernel}, which shows that a sequential input output model $(\prob{P}_\cdot,\RV{D},\RV{Y})$ features pairs $(\RV{D}_i,\RV{Y}_i)$ related by conditionally independent and identical responses if and only if it is IO contractible over some variable $\RV{W}$.
+
+The proof of the theorem is involved, and can be found in its entirety Appendix \ref{app:representation_proof}. Note that we employ a string diagram notation in some steps of the proof, explained in Appendix \ref{ssec:mken_diagrams}. Here we just introduce enough to explain the key terms in the theorem statement. 
+
+\subsection{Preliminaries}\label{sec:rep_theorem_background}
+
+\begin{definition}[Input count variable]\label{def:count_of_inputs}
+Given a sequential input-output model $(\prob{P}_C,\RV{D},\RV{Y})$ with countable $D$, $\#_{j}^k$ is the variable
+\begin{align}
+    \#_{\RV{D}_{\cdot}=j}^k := \sum_{i=1}^{k-1} \llbracket \RV{D}_i = j \rrbracket
+\end{align}
+That is, $\#_{\RV{D}_{\cdot}=j}^k$ is equal to the number of times $\RV{D}_i=j$ over all $i<k$.
+\end{definition}
+
+If we have an infinite sequence of pairs $(\RV{D}_i,\RV{Y}_i)$, we can wrap the sequence $\RV{Y}$ into a table $\RV{Y}^D$ such that $\RV{Y}^D_{11}$ is equal to the value of the first $\RV{Y}_i$ such that $\RV{D}_i=1$, $\RV{Y}^D_{21}$ is equal to the value of the second such $\RV{Y}_i$ and so forth. We call it a ``tabulated conditional'' because, under the assumption of CIIRs, we can evaluate a conditional $\prob{P}_\alpha^{\RV{Y}|\RV{D}}(\cdot|d_1,d_2,...)$ by ``looking up'' the marginal distribution $\prob{P}_\alpha^{\RV{Y}^D_{1 d_1}\RV{Y}^D_{2 d_2}...}$ over the appropriate elements of $\RV{Y}^D$.
+
+\begin{definition}[Tabulated conditional distribution]\label{def:tab_cd}
+Given a sequential input-output model $(\prob{P}_C,\RV{D},\RV{Y})$ on $(\Omega,\sigalg{F})$, define the \emph{tabulated conditional distribution} $\RV{Y}^D:\Omega\to Y^{\mathbb{N}\times D}$ by
+\begin{align}
+    \RV{Y}^D_{ij} = \sum_{k=1}^{\infty} \llbracket \#_{\RV{D}_{\cdot}=j}^k = i\rrbracket \llbracket \RV{D}_k = j \rrbracket \RV{Y}_k
+\end{align}
+That is, the $(i,j)$-th coordinate of $\RV{Y}^D$ is equal to the value of $\RV{Y}_k$ for which the corresponding $\RV{D}_k$ is the $i$th instance of the value $j$ in the sequence $(\RV{D}_1,\RV{D}_2,...)$, or 0 if there are fewer than $i$ instances of $j$ in this sequence.
+\end{definition}
+
+The \emph{directing random measure} of a sequence of exchangeable variables is defined as the map from the set of events of each variable in the sequence the limit of normalised partial sums of indicator functions over that set \citep{kallenberg_basic_2005}. The directing random measure is a probability measure. For completeness, we also define a directing random measure in the case that the relevant limit does not exist, although we are only practically interested in using the definition where the limit does exist.
+
+\begin{definition}[Directing random measure]\label{def:dir_rand_meas}
+Given a probability set $(\prob{P}_C,\Omega,\sigalg{F})$ and a sequence $\RV{X}:=(\RV{X}_i)_{i\in\mathbb{N}}$, the directing random measure of $\RV{X}$ written $\RV{H}:\Omega\to \Delta(X)$ is the function
+\begin{align}
+    \RV{H} := A \mapsto \begin{cases}
+    \lim_{n\to \infty}\frac{1}{n} \sum_{i=1}^{\infty} \mathds{1}_{A}(\RV{X}_{i}) & \text{this limit exists for all }\alpha\in C\\
+    \llbracket A = X \rrbracket &\text{otherwise}
+    \end{cases} 
+\end{align}
+\end{definition}
+
+Given input and output sequences $\RV{D}$ and $\RV{Y}$ we define the \emph{directing random conditional} as the directing random measure of the tabulated conditional $\RV{Y}^D$ interpreted as a sequence of column vectors $((\RV{Y}^D_{1j})_{j\in D},(\RV{Y}^D_{2j})_{j\in D},...)$.
+
+\begin{definition}[Directing random conditional]\label{def:dir_rand_cond}
+Given a sequential input-output model $(\prob{P}_C,\RV{D},\RV{Y})$, we will say the directing random conditional $\RV{H}:\Omega\to \Delta(Y^D)$ is the function
+\begin{align}
+    \RV{H} := \bigtimes_{j\in D} A_j \mapsto \begin{cases}
+    \lim_{n\to \infty}\frac{1}{n} \sum_{i=1}^{\infty} \prod_{j\in D} \mathds{1}_{A_j}(\RV{Y}^D_{ij}) & \text{this limit exists}\\
+    \llbracket \bigtimes_{j\in D} A_j = Y^D \rrbracket &\text{otherwise}
+    \end{cases} 
+\end{align}
+\end{definition}
+
+A finite permutation of rows is a function that independently permutes a finite number of elements in each row of a table. A special case of such a function is one that swaps entire columns (that is, a permutation of rows that applies the same permutation to each row).
+
+\begin{definition}[Permutation of rows]
+Given a sequence of indices $(i,j)_{i\in \mathbb{N},j\in D}$ a finite permutation of rows is a function $\eta:\mathbb{N}\times D\to \mathbb{N}\times D$ such that for each $j\in D$, $\eta_j:=\eta(\cdot,j)$ is a finite permutation $\mathbb{N}\to \mathbb{N}$ and $\eta(i,j)=(\eta_j(i),j)$.
+\end{definition}
+
+Lemma \ref{th:table_rep_kernel} shows that an IO contractible conditional distribution can be represented as the product of a column exchangeable probability distribution and a ``lookup function'' or ``switch''. This lookup function is also used in the representation of potential outcomes models (see, for example, \citet{rubin_causal_2005}), but we do not assume that the tabulated conditional $\RV{Y}^D$ is interpretable as potential outcomes. By representing a conditional probability as an exchangeable regular probability distribution, we can apply De Finetti's theorem, which is a key step in proving the main result of Theorem \ref{th:ciid_rep_kernel}.
+
+To prove Lemma \ref{th:table_rep_kernel}, we assume that the set of input sequences in which each value appears infinitely often has measure 1 for every option in $C$. Without this assumption, we would have to accept positive probability that we run out of $\RV{D}_i$s taking some value $j\in D$ preventing us from filling out the ``tabulated conditional'' $\RV{Y}^D$ correctly. We call this side condition \emph{infinite support}.
+
+\begin{definition}[Infinite support]\label{def:infinite_support}
+Given a sequential input-output model $(\prob{P}_C,\RV{D},\RV{Y})$ with $D$ countable if, letting $E\subset D^{\mathbb{N}}$ be the set of all sequences such that for all $j\in D$
+\begin{align}
+    x\in E \implies \sum_{i=0}\llbracket x_i = j\rrbracket = \infty
+\end{align}
+we have $\prob{P}_\alpha^{\RV{D}|\RV{W}}(E|w)=1$ for all $\alpha,w$, then we say $\RV{D}$ is \emph{infinitely supported over }$\RV{W}$.
+\end{definition}
+
+The key property of the tabulated conditional is that we can evaluate the regular conditional $\prob{P}_\alpha^{\RV{Y}|\RV{WD}}$ by ``looking up'' the appropriate marginal of $\prob{P}_\alpha^{\RV{Y}^D}$.
+
+\begin{lemma}\label{th:table_rep_kernel}
+Suppose a sequential input-output model $(\prob{P}_C,\RV{D},\RV{Y})$ is given with $D$ countable and $\RV{D}$ infinitely supported over $\RV{W}$. Then for some $\RV{W}$, $\alpha$, $\prob{P}_\alpha^{\RV{Y}|\RV{WD}}$ is IO contractible if and only if
+\begin{align}
+    \prob{P}_\alpha^{\RV{Y}|\RV{WD}}(\bigtimes_{i\in \mathbb{N}}A_i|w,(d_i)_{i\in \mathbb{N}}) &= \prob{P}_\alpha^{(\RV{Y}^D_{i d_i})_{i\in\mathbb{N}}|\RV{W}}(\bigtimes_{i\in \mathbb{N}}A_i|w)&\forall A_i\in \sigalg{Y}^{D}, w\in W, d_i\in D
+\end{align}
+and for any finite permutation of rows $\eta:\mathbb{N}\times D\to \mathbb{N}\times D$
+\begin{align}
+    \prob{P}_\alpha^{(\RV{Y}^D_{ij})_{\mathbb{N}\times D}|\RV{W}}&= \prob{P}_\alpha^{(\RV{Y}^D_{\eta(i,j)})_{\mathbb{N}\times D}|\RV{W}}\label{eq:col_exch}
+\end{align}
+\end{lemma}
+
+\begin{proof}
+Only if: We define a random invertible function $\RV{R}:\Omega\times \mathbb{N}\to \mathbb{N}\times {D}$ that reorders the indicies so that, for $i\in \mathbb{N},j\in D$, $\RV{D}_{\RV{R}^{-1}(i,j)}=j$ almost surely. We then use IO contractibility to show that $\prob{P}_\alpha^{\RV{Y}|\RV{D}}(\cdot|d)$ is equal to the distribution of the elements of $\RV{Y}^D$ selected according to $d\in D^{\mathbb{N}}$.
+
+If: We construct a conditional probability according to Definition \ref{def:tab_cd} and verify that it satisfies IO contractibility.
+
+The full proof can be found in Appendix \ref{app:representation_proof}. Note that the proof uses string diagram notation explained in Appendix \ref{ssec:mken_diagrams}.
+\end{proof}
+
+Because the distribution $\prob{P}_\alpha^{\RV{Y}^D|\RV{W}}$ from Lemma \ref{th:table_rep_kernel} is row-exchangeable, the limit in the definition of the directing random conditional $\RV{H}$ exists almost surely (see Lemma \ref{lem:ciid_yd}).  In fact, we do not need the full sequence of pairs $(\RV{D},\RV{Y})$ to calculate $\RV{H}$; any subsequence $A\subset\mathbb{N}$ that satisfies the condition that $\RV{D}_A$ is infinitely supported over $\RV{W}$ is sufficient.
+
+\begin{theorem}\label{th:any_infinite_sequence}
+Suppose a sequential input-output model $(\prob{P}_C,\RV{D},\RV{Y})$ is given with $D$ countable,  $\RV{D}$ infinitely supported over $\RV{W}$ and for some $\RV{W}$, $\prob{P}_\alpha^{\RV{Y}|\RV{WD}}$ is IO contractible for all $\alpha$. Consider an infinite set $A\subset \mathbb{N}$, and let $\RV{D}_A:=(\RV{D}_i)_{i\in A}$ and $\RV{Y}_A:=(\RV{Y}_i)_{i\in A}$ such that $\RV{D}_A$ is also infinitely supported over $\RV{W}$. Then $\RV{H}_A$, the directing random conditional of $(\prob{P}_C,\RV{D}_A,\RV{Y}_A)$ is almost surely equal to $\RV{H}$, the directing random conditional of $(\prob{P}_C,\RV{D},\RV{Y})$.
+\end{theorem}
+
+\begin{proof}
+The strategy we pursue is to show that an arbitrary subsequence of $(\RV{D}_i,\RV{Y}_i)$ pairs induces a random contraction of the rows of $\RV{Y}^D$. Then we show that the contracted version of $\RV{Y}^D$ has the same distribution as the original, and consequently the normalised partial sums converge to the same limit.
+
+The proof is in Appendix \ref{app:representation_proof}.
+\end{proof}
+
+We are now ready to state the main result, Theorem \ref{th:ciid_rep_kernel}. Assuming a sequential input-output model $(\prob{P}_C,\RV{D},\RV{Y})$ (Definition \ref{def:seq_io}) with inputs $\RV{D}$ infinitely supported (Definition \ref{def:infinite_support}) over some random variable $\RV{W}$, $(\prob{P}_C,\RV{D},\RV{Y})$ is IO contractible over the same $\RV{W}$ if and only if the pairs $(\RV{D}_i, \RV{Y}_i)$ share conditionally independent and identical responses (Definition \ref{def:cii_rf}), given by the directing random conditional $\RV{H}$ (Definition \ref{def:dir_rand_cond}) and $(\prob{P}_C,\RV{D},\RV{Y})$ is weakly data-independent.
+
+\subsection{Statement of the representation theorem}\label{sec:reptheorem_statement}
+
+\begin{theorem}[Representation of IO contractible models]\label{th:ciid_rep_kernel}
+Suppose a sequential input-output model $(\prob{P}_C,\RV{D},\RV{Y})$ with sample space $(\Omega,\sigalg{F})$ is given with $D$ countable and $\RV{D}$ infinitely supported over $\RV{W}$. Then the following are equivalent:
+\begin{enumerate}
+    \item There is some $\RV{W}$ such that $\prob{P}_\alpha^{\RV{Y}|\RV{WD}}$ is IO contractible for all $\alpha$
+    \item For all $i$, $\RV{Y}_i\CI^e_{\prob{P}_C} (\RV{Y}_{\neq i},\RV{D}_{\neq i},\text{id}_C)|(\RV{H},\RV{D}_i)$ and for all $i,j, \alpha$ $$\prob{P}_\alpha^{\RV{Y}_i|\RV{H}\RV{D}_i}=\prob{P}_\alpha^{\RV{Y}_j|\RV{H}\RV{D}_j}$$
+    \item There is some $\kernel{L}:H\times X\kto Y$ such that for all $\alpha$, $$\prob{P}_\alpha^{\RV{Y}|\RV{DH}}(\bigtimes_{i\in\mathbb{N}} A_{i}|d,h)= \prod_{i\in\mathbb{N}} \prob{P}_C^{\RV{Y}_1|\RV{D}_1\RV{H}}(A_i|d_i,h)$$
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1)$\implies$(3):
+We apply Lemma \ref{th:table_rep_kernel} followed by Lemma \ref{lem:ciid_yd} followed by Lemma \ref{lem:hw_interchange}.
+
+
+(3)$\implies$ (2):
+We verify that the required conditional independences hold assuming (3).
+
+(2)$\implies$ (1):
+We show that, assuming (2), then $\prob{P}_\alpha^{\RV{Y}|\RV{WD}}$ is IO contractible over $\RV{W}$ for all $\alpha$.
+
+See Appendix \ref{sec:io_contract_models} for the full proof. Note that the proof uses string diagram notation explained in Appendix \ref{ssec:mken_diagrams}.
+\end{proof}
+
+Whenever we have an input-output model with conditionally independent and identical responses given some arbitrary $\RV{W}$, then we also have conditionally independent and identical responses given the directing random conditional $\RV{H}$.
+
+\begin{corollary}\label{lem:ci_drc}
+If a sequential input-output model $(\prob{P}_C,\RV{D},\RV{Y})$ has independent and identical responses conditional on some variable $\RV{W}$ and $\RV{D}$ has infinite support over the same $\RV{W}$, then letting $\RV{H}$ be the directing random conditional with respect to inputs $\RV{D}$ and outputs $\RV{Y}$, it follows that for for all $i$, $\RV{Y}_i\CI^e_{\prob{P}_C} \RV{W}|(\RV{D}_i,\RV{H},\text{id}_C)$ and for all $\alpha, i, j$, $\prob{P}_\alpha^{\RV{Y}_i|\RV{D}_i\RV{H}}=\prob{P}_\alpha^{\RV{Y}_j|\RV{D}_j\RV{H}}$.
+\end{corollary}
+
+\begin{proof}
+We have by Theorem \ref{th:ciid_rep_kernel} that $\prob{P}_\alpha^{\RV{Y}|\RV{W}\RV{D}}$ is IO contractible over $\RV{W}$. The conclusion follows by applying Theorem \ref{th:ciid_rep_kernel} a second time.
+\end{proof}
+
+Building on Corollary \ref{lem:ci_drc}, Theorem \ref{th:infinite_condition_swaps} shows the assumption that the pairs $(\RV{D}_i,\RV{Y}_i)$ are related by conditionally independent and identical responses implies that, for the purposes of learning the response function $\RV{H}$, all infinite subsequences of $(\RV{D}_i,\RV{Y}_i)$ pairs with appropriate support are interchangeable. That is, suppose we have some infinite $A\subset \mathbb{N}$ for such that $(\prob{P}_\cdot,\RV{D}_A,\RV{Y}_A)$ is unimpeachably IO contractible over $*$ -- perhaps all pairs indexed by $A$ are derived from a carefully conducted experiment in precisely the conditions of interest to the decision maker and are therefore considered interchangeable in this strong sense. If we have some other infinite set $B\subset \mathbb{N}\setminus A$ of pairs derived from passive observation, then the assumption of conditionally independent and identical responses for the whole collection of pairs $(\RV{D}_i,\RV{Y}_i)_{i\in\mathbb{N}}$ implies that while we may not be able to swap individual pairs in $A$ with individual pairs in $B$, we must be able to swap the whole set $A$ for the whole set $B$ for the purposes of learning the response function $\RV{H}$.
+
+\begin{theorem}\label{th:infinite_condition_swaps}
+A data-independent sequential input-output model $(\prob{P}_C,\RV{D},\RV{Y})$ with directing random conditional $\RV{H}$ and $\RV{D}$ infinitely supported over $\RV{H}$ features conditionally independent and identical response functions $\prob{P}_C^{\RV{Y}_i|\RV{D}_i\RV{H}}$ only if for any sets $A,B\subset \mathbb{N}$ such that $\RV{D}_A$ and $\RV{D}_B$ are also infinitely supported over $\RV{H}$ and any $i,j\in \mathbb{N}$ such that $i\not\in A$, $j\not\in B$, 
+\begin{align}
+\prob{P}_\alpha^{\RV{Y}_i|\RV{D}_i\RV{Y}_A,\RV{D}_A}=\prob{P}_\alpha^{\RV{Y}_j|\RV{D}_j\RV{Y}_B\RV{D}_B}
+\end{align}
+If in addition each $\prob{P}_\alpha^{\RV{YD}}$ is dominated by some exchangeable $\prob{Q}_\alpha^{\RV{Y}\RV{D}}$, then the reverse implication also holds.
+\end{theorem}
+
+\begin{proof}
+See Appendix \ref{sec:data_independent_proofs}.
+\end{proof}
+
+\subsection[Does IO contractibility help?]{Does IO contractibility help us understand identification?}\label{sec:symmetries_discussion}
+
+One of the key contributions of De Finetti's representation theorem was to provide an alternative justification for the common modelling assumption that a sequence of variables were all distributed according to a shared but unknown ``true distribution''. De Finetti regarded the notion of an ``unknown true distribution'' as nonsensical, and through his representation theorem suggested that we could instead justify this structure by arguing that the experiment that produced the sequence of variables was, from the point of view of the analyst seeking to make predictions, invariant to reindexing the variables in the sequence.
+
+Can IO contractibility help to justify common causal assumptions in a similar way? This question is less straightforward because IO contractibility is not such a straightforward symmetry. However, we think it does offer some insight into a common kind of causal assumption. Rather than lending justification to this assumption, the we think that it strengthens the case that this assumption is usually unreasonable.
+
+The particular assumption we have in mind is, in the world of causal graphical models, the assumption that backdoor adjustment is possible and in the world of potential outcomes it is the assumption of \emph{conditional ignorability} \citep{rubin_causal_2005}. Both assumptions hold that, given a treatment $\RV{D}_i$, covariates $\RV{X}_i$ and an outcome $\RV{Y}_i$, there is an unknown but common conditional distribution of $\RV{Y}_i$ given $\RV{D}_i$ and $\RV{X}_i$ for all $i$, where $i$ ranges over passive observations as well as the consequences of actions. That is, we assume that the pairs $((\RV{D}_i,\RV{X}_i),\RV{Y}_i)$ share conditionally independent and identical responses. The key implication is Theorem \ref{th:infinite_condition_swaps}, which holds that, if the sequences of observations and consequences are both infinite, then for the purpose of learning the response function the problem is unchanged by swapping any subset of the indices corresponding to observations with any subset of those corresponding to consequences. That is, there is no difference between predicting the response function of the passive observations from an infinite sequence of passive observational data and predicting the response function of the consequences of the decision makers actions from the same sequence of passive observational data.
+
+In practice, we propose that it would be very rare to have both of these datasets and treat them as interchangeable in this manner. Example \ref{ex:no_infinite_swapping} makes a similar point.
+
+\begin{example}\label{ex:no_infinite_swapping}
+Suppose an experiment is done which assigns some medical treatment $\RV{D}_i$ uniformly according to some random signal to patients for even $i$, and allows assignment by patient and doctor discretion for odd $i$. $\RV{Y}_i$ is a binary variable recording some health outcome of interest and $\RV{X}_i$ is some vector of covariates. The sequence $(\RV{D}_c,\RV{X}_c,\RV{Y}_c)$ is associated with the consequences of a decision maker's choices, where $c$ is some special character not in $\mathbb{N}$.
+
+According to Theorem \ref{th:infinite_condition_swaps}, the assumption of conditionally independent and identical responses applied to $((\RV{D},\RV{X}),\RV{Y})$ implies
+\begin{align}
+    \prob{P}_\alpha^{\RV{Y}_c|\RV{D}_c\RV{X}_c\RV{D}_{\text{odds}}\RV{X}_{\text{odds}}\RV{Y}_{\text{odds}}}&=\prob{P}_\alpha^{\RV{Y}_c|\RV{D}_c\RV{X}_c\RV{D}_{\text{evens}\setminus\{0\}}\RV{X}_{\text{evens}\setminus\{0\}}\RV{Y}_{\text{evens}\setminus\{0\}}}\\
+    &=\prob{P}_\alpha^{\RV{Y}_2|\RV{D}_2\RV{X}_2\RV{D}_{\text{evens}}\RV{X}_{\text{evens}\setminus\{2\}}\RV{Y}_{\text{evens}\setminus\{2\}}}\\
+    &=\prob{P}_\alpha^{\RV{Y}_2|\RV{D}_2\RV{X}_2\RV{D}_{\text{odds}}\RV{X}_{\text{odds}}\RV{Y}_{\text{odds}}}
+\end{align}
+
+That is, under this assumption, the following four problems are deemed identical:
+\begin{itemize}
+    \item Predicting the outcome of the decision maker's input from the experimental data
+    \item Predicting the outcome of the decision maker's input from the observational data
+    \item Predicting a held-out experimental outcome from the experimental data
+    \item Predicting a held-out experimental outcome from the observational data
+\end{itemize}
+Any answer to one problem is, under this assumption, an answer for all of them. This is an assumption; we do not conclude this by comparing answers to these different problems and finding them to be the same, we simply assume it is so. The proposition that these problems are \emph{identical} is hard to swallow: it seems very unlikely, for example, if an analyst aiming to predict experimental results with access to the experimental data would be satisfied with their previous answer derived from the observational data.
+\end{example}
+
+In practice, when both experimental and observational data are available, they are \emph{not} assumed to be interchangeable in this sense -- in fact, the question of how well the observational data predicts experimental outputs is one of substantial interest \citet{eckles_bias_2021,gordon_comparison_2018,gordon_close_2022}.
+
