@@ -998,7 +998,7 @@ Conditioning on $\RV{G}^Y_{EXZ}=g^Y_{EXZ}$
     \sum_{e\in E} g^y_{exz}\frac{\RV{G}^x_{ez}\RV{G}^e_z}{\sum_{e'\in E}\RV{G}^x_{e'z}\RV{G}^{e'}_z}&\overset{\prob{P}_C}{\cong} \sum_{e\in E} \RV{g}^y_{exz'}\frac{\RV{G}^x_{ez'}\RV{G}^e_{z'}}{\sum_{e'\in E}\RV{G}^x_{e'z'}\RV{G}^{e'}_{z'}}\label{eqApp:polynomial}
 \end{align}
 
-Eq. \eqref{eqApp:polynomial} defines a polynomial constraint on $\RV{G}^{\RV{Ex}}_{\{z,z'\}}$ for each $x,z,z'$. If $g^y_{exz}=g^y_{e'xz}$ for all $e,e'$ and likewise $g^y_{exz'}=g^y_{e'xz'}$, then this constraint is trivial; it is satisfied for every possible value of $\RV{G}^x_{E\{z,z'\}}$.
+Eq. \eqref{eqApp:polynomial} defines a polynomial constraint on $\RV{G}^{\RV{Ex}}_{\{z,z'\}}$ for each $x,z,z'$. If $g^y_{exz}=g^y_{e'xz}$ for all $e,e'$ then this constraint is trivial; if $g^y_{exz} = g^y_{exz'}$ also, then it is satisfied for every possible value of $\RV{G}^x_{E\{z,z'\}}$, otherwise it is unsatisfiable.
 
 We will show that, unless $g^y_{exz}= g^y_{e'xz}$ for all $e,e'$ and $z$, that this constraint is nontrivial for some $z$. Consequently, the set of solutions for $\RV{G}^x_{EZ}$ subject to the restriction $g^y_{exz}\neq g^y_{e'xz}$ has Lebesgue measure 0. We will do this by showing that, assuming $g^y_{exz} > g^y_{e^<xz}$ for some $e,e^<$, we can find alternative realisations of $\RV{G}^e_{z}$ that lead to unequal values of the left hand side of Eq \eqref{eqApp:polynomial} without affecting the right hand side.
 
@@ -1030,9 +1030,7 @@ Thus, unless $g^y_{exz}=g^y_{e'xz}$ for all $e,e'$ and $z$, Eq. \eqref{eqApp:pol
 \begin{align}
     \prob{Q}_{\alpha}^{\RV{G}^X_{EZ}|\RV{G}^{XY}_{EZ}}(S|g^{XY}_{EZ}) = 0
 \end{align}
-On the other hand, by assumption, the set $T:=\{g^E_{z}|\RV{G}^E_z=g^E_z\text{ satisfies Eq. \eqref{eqApp:polynomial}}\}$ has measure 1. Thus we conclude that with the exception of a $\prob{Q}_\alpha$ measure 0 set, $g^y_{exz}=g^y_{e'xz}$. That is, $\RV{Y}_i\CI^e_{\prob{Q}} \RV{E}_i|(\RV{Z}_i,\RV{X}_i,\RV{G},\text{id}_C)$. 
-
-From the diversity condition, we have $\RV{Y}_i\CI^e_{\prob{Q}} \RV{E}_i|(\RV{Z}_i,\RV{X}_i,\RV{G},\text{id}_C)$. By contraction with $\RV{Y}_i\CI^e_{\prob{Q}} \RV{Z}_i|(\RV{X}_i,\RV{G},\text{id}_C)$, we have $\RV{Y}_i\CI^e_{\prob{Q}} (\RV{Z}_i,\RV{E}_i)|(\RV{X}_i,\RV{G},\text{id}_C)$. 
+On the other hand, by assumption, the set $T:=\{g^E_{z}|\RV{G}^E_z=g^E_z\text{ satisfies Eq. \eqref{eqApp:polynomial}}\}$ has measure 1. Thus we conclude that with the exception of a $\prob{Q}_\alpha$ measure 0 set, $g^y_{exz}=g^y_{e'xz}$. That is, $\RV{Y}_i\CI^e_{\prob{Q}} \RV{E}_i|(\RV{Z}_i,\RV{X}_i,\RV{G},\text{id}_C)$. By contraction with $\RV{Y}_i\CI^e_{\prob{Q}} \RV{Z}_i|(\RV{X}_i,\RV{G},\text{id}_C)$, we have $\RV{Y}_i\CI^e_{\prob{Q}} (\RV{Z}_i,\RV{E}_i)|(\RV{X}_i,\RV{G},\text{id}_C)$. 
 
 By CIIR of the $(\RV{E}_i|(\RV{X}_i,\RV{Y}_i))$ pairs, we have for all $i$, $\prob{Q}_\alpha^{\RV{Y}_i\RV{X}_i|\RV{E}_i\RV{G}}\overset{\prob{Q}_\alpha^{\RV{E}_i|\RV{G}}}{\cong}\prob{Q}_\alpha^{\RV{Y}_c\RV{X}_c|\RV{E}_c\RV{G}}$. Because we have a representative version $\RV{G}^{XY}_E$ of \prob{Q}_\alpha^{\RV{Y}_i\RV{X}_i|\RV{E}_i\RV{G}} for all $i\in \mathbb{N}$ (Theorem \ref{th:repr_cond}) and precedent implies that any set of measure 0 with respect to  $\prob{Q}_\alpha^{\RV{E}_i|\RV{G}}$ for all $i\in\mathbb{N}$ also has measure 0 with respect to $\prob{Q}_\alpha^{\RV{E}_c|\RV{G}}$, we have
 \begin{align}

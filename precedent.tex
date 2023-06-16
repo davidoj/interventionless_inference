@@ -73,7 +73,7 @@ Given a latent CIIR see-do model $(\prob{P}_\cdot,(\RV{E}_i,\RV{X}_i,\RV{Y}_i,\R
 
 We say that the options $C$ have \emph{diverse precedent} with respect to $(\prob{P}_\cdot,(\RV{E}_i,\RV{X}_i,\RV{Y}_i,\RV{Z}_i)_{i\in\mathbb{N}\cup\{c\}})$ if $\prob{P}_\cdot$ satisfies the diversity condition:
 \begin{align}
-    \prob{P}_{\alpha}^{\RV{G}^{EX}_{Z}|\RV{G}^{Y}_{EXZ}}(\cdot|g^{Y}_{EXZ}) &\ll U_{\Delta(E)}& \forall \alpha, z, \prob{P}_\alpha-\text{almost all }g^{Y}_{EXZ}\label{eqApp:lebesgue_dom}
+    \prob{P}_{\alpha}^{\RV{G}^{EX}_{Z}|\RV{G}^{Y}_{EXZ}}(\cdot|g^{Y}_{EXZ}) &\ll U_{\Delta(E\times X)}& \forall \alpha, z, \prob{P}_\alpha-\text{almost all }g^{Y}_{EXZ}\label{eqApp:lebesgue_dom}
 \end{align}
 as well as the precedent condition:
 \begin{align}
@@ -102,80 +102,57 @@ We show that the assumption of conditional independence imposes a polynomial con
 Full proof in Appendix \ref{sec:proof_precedent}.
 \end{proof}
 
-\section{Diversity, causal discovery and the principle of independent causal mechanisms}
+\section{Continuity and discovery}{Causal discovery and the absolute continuity assumption}
 
-In this section we will present a somewhat informal argument that th
+We've suggested that the precedent assumption may be plausible when we suppose that the outcomes of interest exhibit a probabilistically regular response to some unobserved state, and that the values of this unobserved state that can be brought about through our actions have some precedent in the observed data. The continuity assumption deserves some more attention. Note that we require the continuity assumption to hold after conditioning on the independence of $\RV{Y}_i$ from $\RV{Z}_i$ given $\RV{X}_i$; the core of Theorem \ref{th:latent_to_observable} is that if we rule out the possibility of explaining this independence through a lack of ``continuity'' of the conditionals $\RV{G}^{X}_{EZ}$ and $\RV{G}^{E}_{Z}$, then it must be due to $\RV{Y}_i$ also being independent of $\RV{E}_i$ given $\RV{X}_i$. Under what circumstances would we want to rule out explaining this independence through a lack of continuity?
 
-We've already discussed the ``precedent'' part of the diverse precedent assumption: it is the assumption that whatever the decision maker can do has been done before. The interpretation of the diversity part of the assumption is less obvious. Informally, Theorem \ref{th:latent_to_observable} argues as follows:
+We do not propose a conclusive answer to this question. However, the causal discovery literature offers a possible approach which we will explain here. Causal structures have two useful properties for this purpose: first, they can ``explain'' conditional independences like $\RV{Y}_i$ is independent of $\RV{Z}_i$ given $\RV{X}_i$. Second, under standard interpretations, given a structural causal model, parental conditional probabilities are mutually continuous (in our terminology). This property has been noted before, and has been informally stated as the \emph{principle of independent causal mechanisms} (in spite of the name, parental conditional probabilities need not be probabilistically independent) \citep{lemeire_replacing_2013,peters_elements_2017}.
+
+To illustrate why we need to explain the conditional independence, suppose we pick a ``prior'' distribution of $\RV{G}^{EXY}_{Z}$ (by which we just mean $\prob{P}_{\cdot}^{\RV{G}^{EXY}_{Z}}$) such that for each $z,z'\in Z$, the distribution of $\RV{G}^{EXY}_z$ conditional on $\RV{G}^{EXY}_{z'}$ is absolutely continuous with respect to the uniform measure on $E\times X\times Y$. In this case, the event $\RV{G}^Y_{Xz}=\RV{G}^Y_{Xz'}$ would have probability 0 for all $z,z'\in Z$. As such, this ``prior'' does not tell us whether diverse precedent holds after conditioning on this event, as conditional probabilities are not determined by the joint distribution on measure 0 events. Thus this prior does not tell us whether diverse precedent holds after conditioning on the independence of $\RV{Y}_i$ from $\RV{Z}_i$ given $\RV{X}_i$.
+
+Bayesian causal discovery approaches prior specification in a different way. This approach considers a mixture of graphical hypotheses which each imply certain conditional independences \citep{heckerman_learning_1995}. Because each graphical hypothesis is given positive probability, independences like $\RV{Y}_i$ independent of $\RV{Z}_i$ given $\RV{X}_i$ also have positive probability, in contrast with the approach that sets $\RV{G}^{EXY}_z$ absolutely continuous with respect to the uniform measure.
+
+Another conventional feature of structure learning is the assumption that the parameters associated with parental conditional distributions are mutually continuous. That is, for any $\RV{X}$, fixing a hypothesised structure $\mathcal{G}$, $\prob{P}_\cdot^{\RV{G}^{X}_{\mathrm{Pa}_\mathcal{G}(X)}|\RV{G}^{X^\complement}_{\mathrm{Pa}_\mathcal{G}(X^\complement)}}$ is absolutely continuous (see Definition \ref{def:mga} for the meaning of $\mathrm{Pa}_{\mathcal{G}}(\RV{X})$). \citep{heckerman_learning_1995} assumes these parameters are mutually independent with absolutely continuous marginals. While not explicitly Bayesian, \citet{meek_strong_1995} argues that given a hypothesised causal model, \emph{unfaithful}\footnote{See the referenced paper for a definition.} distributions are unlikely because they violate mutual absolute continuity.
+
+Putting these properties together, we have:
 \begin{itemize}
-	\item If $\RV{Y}_i\CI^e_\prob{Q} \RV{Z}_i |(\RV{X}_i,\RV{G},\mathrm{id}_C)$ then we must either have ``alignment'' between $\RV{G}^{XE}_Z$ and $\RV{G}^{Y}_{EXZ}$ or we also have $\RV{Y}_i\CI^e_\prob{Q} \RV{E}_i |(\RV{X}_i,\RV{G},\mathrm{id}_C)$
-	\item If we assume diversity of $\RV{G}^{XE}_Z$ conditioned on $\RV{G}^{Y}_{EXZ}$ -- i.e. we rule out ``alignment'' -- then we must conclude $\RV{Y}_i\CI^e_\prob{Q} \RV{E}_i |(\RV{X}_i,\RV{G},\mathrm{id}_C)$
+	\item We may ``explain'' the independence $\RV{Y}_i\CI^e_{\prob{Q}} \RV{Z}_i | (\RV{G}, \mathrm{id}_C)$ with a hypothesised causal structure $\mathcal{G}$
+	\item If \emph{either} $\RV{Z}_i$ is a parent of $\RV{E}_i$ or $\RV{E}_i$ and $\RV{Z}_i$ are parents of $\RV{X}_i$ in $\mathcal{G}$ then the relevant continuity property for Theorem \ref{th:latent_to_observable} holds
 \end{itemize}
 
-What we mean by ``alignment'' here is that $\RV{G}^{XE}_Z$ is restricted to a set of Lebesgue measure 0 conditioned on $\RV{G}^{Y}_{EXZ}$. The principal of independent causal mechanisms offers us one possible way of deciding whether such alignment is or is not likely \citep{lemeire_replacing_2013,peters_elements_2017}. This is an informal principle that suggests conditionals like $\RV{G}^{XE}_Z$ and $\RV{G}^{Y}_{EXZ}$ will be ``independent'' or ``unaligned'' under causal structure assumptions that identify both of these conditionals as ``causal mechanisms''. It is further argued (for example in \citet[Ch. ~2]{peters_elements_2017}) that conditionals that do not correspond to ``causal mechanisms'' may exhibit ``alignment''.
+For example, suppose we consider a class of structural hypotheses $\mathcal{G}_i$ where, in all structures, we have $\RV{E}_i\rightarrowtriangle \RV{X}_i$ and $\RV{G}_i\rightarrowtriangle \RV{X}_i$. One such structure is illustrated below:
 
-Given a directed graph $\mathcal{G}$, a ``causal mechanism'' is a conditional distribution $\RV{G}^{X}_{\mathrm{Pa}_{\mathcal{G}}(X)}$.
+\begin{align}
+	\mathcal{G}_1 := \tikzfig{structural_model_1} \label{eq:structural_model_1}
+\end{align}
 
-\emph{Causal discovery} refers to a variety of strategies that aim to infer a causal structure from a set of observations. A common approach to causal discovery is to learn the causal structures that are faithful to the conditional independence structure of the observed data. We can use this approach to causal discovery to motivate the assumption of diversity as follows:
+In $\mathcal{G}_1$ (and, indeed, in every $\mathcal{G}_i$) we have $\mathrm{Pa}_{\mathcal{G}_i}(\RV{X}_i)=(\RV{Z}_i,\RV{E}_i)$. Furthermore, $\RV{G}^E_Z$ is determined by $\RV{G}^E$ and $\RV{G}^Z_E$, which are both parental parameters in $\mathcal{G}_1$ and therefore mutually absolutely continuous with $\RV{G}^X_{EZ}$. Finally, $\RV{G}^Y_{EXz} = \RV{G}^Y_{EX}$ for all $z\in Z$ is also a parental conditional and therefore also mutually absolutely continuous with $\RV{G}^X_{EZ}$. Thus, given hypothesis $\mathcal{G}_1$, if we also accept the assumption of precedent, Theorem \ref{th:latent_to_observable} follows. In fact, we can similarly argue that Theorem \ref{th:latent_to_observable} follows for all structures $\mathcal{G}_i$ where:
 \begin{itemize}
-	\item Begin with a set of possible causal structures $\mathscr{G}$
-	\item ``Observe'' $\RV{Y}_i\CI^e_\prob{Q} \RV{Z}_i |(\RV{X}_i,\RV{G},\mathrm{id}_C)$ and retain the subset $\mathscr{G}'$ faithful to this conditional indepdenence
-	\item Check whether $\RV{G}^{XE}_Z$ and $\RV{G}^{Y}_{EXZ}$ are independent causal mechanisms in the resulting set of causal structures
+	\item $\RV{E}_i\rightarrowtriangle \RV{X}_i$ and $\RV{Z}_i\rightarrowtriangle \RV{X}_i$
+	\item $\RV{E}_i\rightarrowtriange \RV{X}_i$ and $\RV{Z}_i\rightarrowtriangle \RV{E}_i$
 \end{itemize}
 
-
-\begin{example}[Using causal discovery to justify Theorem \ref{th:latent_to_observable}]
-Suppose we have a latent CIIR see-do model $(\prob{P}_\cdot,(\RV{E}_i,\RV{X}_i,\RV{Y}_i,\RV{Z}_i)_{i\in\mathbb{N}\cup\{c\}})$, and we hypothesize that it may be associated with any of the following graphs:
-
+On the other hand, consider
 \begin{align}
-\mathscr{G}:=\tikzfig{diverse_precedent}\label{eq:diverse_precedent_graph1}
+	\mathcal{G}_2 := \tikzfig{structural_model_2} \label{eq:structural_model_2}
 \end{align}
 
-Here red edges correspond to edges that may or may not be present, and may be oriented in any direction. Of these graphs, only one is faithful to the conditional indepdendence $\RV{Y}_i\CI^e_\prob{Q} \RV{Z}_i |(\RV{X}_i,\RV{G},\mathrm{id}_C)$, yielding the graph
+Here we also have $\RV{Y}_i\CI^e_{\prob{Q}} \RV{Z}_i | (\RV{G}, \mathrm{id}_C)$, but absolute continuity is not obviously supported; neither $\RV{G}^X_{EZ}$ nor $\RV{G}^E_Z$ are parental parameters. In fact, we can observe that in $\mathcal{G}_2$ we have $\RV{Y}_i\CI^e_{\prob{Q}} \RV{Z}_i | (\RV{X}_i, \RV{G}, \mathrm{id}_C)$ given an arbitrary choice of $\RV{G}^Y_{EX}$, but not $\RV{Y}_i\CI^e_{\prob{Q}} \RV{E}_i | (\RV{X}_i, \RV{G}, \mathrm{id}_C)$, so by the contrapositive of Theorem \ref{th:latent_to_observable} we must not have the relevant absolutely continuous conditionals.
+
+If, in our original example, instead of conditioning on medical practitioners, we take $\RV{Z}_i$ to be an individual's clothing size and (for the sake of argument) find the same result: mortality outcomes $\RV{Y}_i$ are independent of clothing size $\RV{Z}_i$ conditional on body mass index $\RV{X}_i$. There are no doubt some differences between people with the same body mass index who wear differently sized clothes -- height, for example -- but it is not clear from the given data whether we should conclude that any common actions affecting a person's health do so via their body mass index, or whether there are features relevant to a person's health that fail to be correlated with clothing size after conditioning on body mass index. This example is motivated by structure \eqref{eq:structural_model_2}, though it's hard to come up with an example that is inarguably an instance of this structure and also not excessively convoluted.
+
+
+While we've argued that structure \eqref{eq:structural_model_1} implies $\RV{Y}_i \CI^e_{\prob{P}} \RV{E}_i | (\RV{X}_i, \mathcal{G}_1, \RV{G}, \mathrm{id}_C)$ via Theorem \ref{th:latent_to_observable}, we can note that it also implies this independence via d-separation. On the other hand, \eqref{eq:structural_model_2} does not imply such a conditional independence via Theorem \ref{th:latent_to_observable} or via d-separation. This correspondence is not exact - the structure \eqref{eq:structural_model_3} implies $\RV{Y}_i \CI^e_{\prob{P}} \RV{E}_i | (\RV{X}_i, \mathcal{G}, \RV{G}, \mathrm{id}_C)$ via d-separation, but not via Theorem \ref{th:latent_to_observable}. The existence of such stuctures may not be especially surprising, given that Theorem \ref{th:latent_to_observable} establishes sufficient but not necessary conditions.
 
 \begin{align}
-\mathcal{G}=\tikzfig{diverse_precedent_afterindep}
-\end{align}
-We note in this graph that $\mathrm{Pa}_{\mathcal{G}}(\RV{E},\RV{X})=\RV{Z}$ and $\mathrm{Pa}_{\mathcal{G}}(\RV{Y})=\RV{X}$
-\end{example}
-
-
-Then Diagram \eqref{eq:diverse_precedent_graph1} in combination with the principle of probabilistically independent causal mechanisms implies $\RV{G}^{E}_Z\CI^e_{\prob{P}} \RV{G}^{XY}_{EZ}|\mathrm{Id}_C$. By Theorem \ref{th:dp_from_int}, if we also assume that we have unconditional diversity of $\RV{G}^E_Z$ then we have diverse precedent. If, in addition, the observed data $\RV{T}$ enables us to conclude that $\RV{G}^Y_{xz}=\RV{G}^Y_{xz'}$ for all $z,z'$, then the conditions for Theorem \ref{th:latent_to_observable} are satisfied. We can therefore determine the effect of any action $\alpha$ on $\RV{Y}$ if we already know its effect on $\RV{X}$.
-
-On the other hand, if we observe the same conditional independence but associate the model with the following graph:
-
-\begin{align}
-\tikzfig{diverse_precedent_miss}\label{eq:diverse_precedent_graph2}
+	\mathcal{G}_2 := \tikzfig{structural_model_3} \label{eq:structural_model_3}
 \end{align}
 
-We note that $\RV{G}^Y_{EXZ}$ is not identified by this graph as a ``causal mechanism'', and therefore the principle of probabilistically independent causal mechanisms implies neither $\RV{G}^{E}_{Z} \CI^e_{\prob{P}} \RV{G}^{XY}_{EZ}|\mathrm{Id}_C$ nor $\RV{G}^{X}_{{EZ}}\CI^e_{\prob{P}} \RV{G}^{\RV{Y}}_{\RV{EXZ}}|\mathrm{Id}_C$. Thus in this case we cannot in general conclude from $\RV{G}^Y_{xz}=\RV{G}^Y_{xz'}$ that the effect of any action $\alpha$ on $\RV{Y}$ can be determined by its effect on $\RV{X}$.
+The alternative d-separation criterion does uphold the general rule we observed, where $\RV{E}_i\rightarrowtriangle \RV{X}_i$ and $\RV{Z}_i\rightarrowtriangle \RV{X}_i$ or $\RV{E}_i\rightarrowtriange \RV{X}_i$ and $\RV{Z}_i\rightarrowtriangle \RV{E}_i$ are sufficient to establish $\RV{Y}_i \CI^e_{\prob{P}} \RV{E}_i | (\RV{X}_i, \mathcal{G}_i, \RV{G}, \mathrm{id}_C)$, while the absence of either of these edges is compatible with structures that do not imply the relevant independence.
 
-\subsubsection{Connection to causal discovery}
+If we assume structural models are expressing the assumption that parental conditional probabilities are mutually absolutely continuous, it may be the case that d-separation properties capture all interesting consequences like those of Theorem \ref{th:latent_to_observable} where mutual absolute continuity supports additional conditional independence implications. It is well known that conditional independences relationships not implied by a structure $\mathcal{G}$ can be broken by choosing slightly different parental conditionals (see for example \citet{meek_strong_1995,zhang_strong_2003}), thus under the assumption that all parental conditionals relative to a structure $\mathcal{G}$ are mutually absolutely continuous we would not find additional conditional independence properties. We may wonder if there are interesting mutual absolute continuity assumptions that are not representable as a directed acyclic graph. In fact, the conditions for Theorem \ref{th:latent_to_observable} are somewhat weaker than those expressed by a structural model -- it only assumes mutual absolute continuity for a subset of conditionals, whereas a structural model assigns every variable a parental set and implies the mutual absolute continuity of every parental conditionals. However, as we have argued, this difference does not seem to matter in this case as both approaches yield the same conclusion.
 
-We will 
-
-The principle of independent causal mechanisms is usually used to derive rules to test for causal directions \citet[Ch. ~4]{peters_elements_2017}. That is, rather than assuming causal directions and inferring independence of conditionals, this principle has typically been used to develop tests for independent conditionals in order to infer causal directions. For Theorem \ref{th:latent_to_observable}, we cannot test for all of the relevant independences because they involve the unobserved variable $\RV{E}$.
-
-We might speculatively justify $\RV{E}_i$ as a causal parent of $\RV{X}_i$ and $\RV{Y}_i$ by referring to our original position that $\RV{E}_i$ represents some latent state which gives rise to probabilistically consistent response behaviour from $\RV{X}_i$ and $\RV{Y}_i$.
-
-We also need to justify the assumption that $\RV{G}^{\RV{EZ}}$ is Lebesgue dominated. One way this might be violated is if a decision maker expects that $\RV{E}_i$ might be independent of $\RV{Z}_i$. In our original example this might occur if every doctor employs the same treatment plan (perhaps because there is a widely-agreed upon optimal plan) and has a similar mixture of patients. In that case, however, we would also observe the treatment $\RV{X}_i$ independent of $\RV{Z}_i$. 
-
-\begin{align}
-\tikzfig{e_z_independent}
-\end{align}
-
-In this graph, $\RV{G}_{\RV{E}}^{\RV{XY}}$ and $\RV{G}^{\RV{EXY}}_{\RV{Z}}$ are identified as independent causal mechanisms.
-
-However we arrive at them, once we have the assumptions that $\RV{E}_i$ is a causal parent of $\RV{X}_i$ and $\RV{Y}_i$ and that $\RV{G}^{\RV{EZ}}$ is Lebesgue dominated, a sufficient additional condition for Theorem \ref{th:dp_from_int} is that $\RV{Z}_i$ is a causal parent of $(\RV{X}_i,\RV{Y}_i)$. As both $\RV{Z}_i$ and $(\RV{X}_i,\RV{Y}_i)$ are observed
-
-In light of the problems associated with conditioning on a set of measure 0, it would be very useful to extend Theorem \ref{th:latent_to_observable} to an approximate result. Specifically, in the event $\RV{Y}_i$ is ``approximately independent'' of $\RV{Z}_i$ given $\RV{X}_i$ and $\RV{G}$, under what conditions is $\RV{Y}_i$ also approximately independent of $\RV{E}_i$ given $\RV{X}_i$ and $\RV{G}$? We speculate that a stronger version of the diverse precedent assumption will be necessary for such a theorem.
-
-The diverse precedent assumption has a connection to the theory of causal graphical models. \citet{meek_strong_1995} justified the \emph{faithfulness} condition for causal graphs associated with discrete probability models on the assumption that the distribution of parameters of a distribution consistent with a particular causal graph are dominated by the Lebesgue measure. In this theory, we have a discrete set of hypotheses over causal structures that imply some conditional independences, and Lebesge-dominated priors over the directing measure after conditioning on any of the causal structure hypotheses and their associated independences. Applying similar reasoning to the present case, we posit an argument along these lines: if we have the independence $\RV{Y}_i\CI^e_{\prob{Q}}(\RV{E}_i,\RV{Z}_i)|(\RV{X}_i,\RV{G},\mathrm{id}_C)$ but not the independence $\RV{E}_i\CI^e_{\prob{Q}} \RV{Z}_i|(\RV{G},\mathrm{id}_C)$ and furthermore $\RV{Z}_i$ is an ancestor of $\RV{E}_i$ and $(\RV{E}_i,\RV{Z}_i)$ is an ancestor of $(\RV{X}_i,\RV{Y}_i)$ (so that $\RV{G}^E_Z$ and $\RV{G}^{XY}_{EZ}$ are associated with forward edges in the causal model) then the diverse precedent assumption may be supported. Note that it may be possible to rule out the independence $\RV{E}_i\CI^e_{\prob{Q}} \RV{Z}_i|(\RV{G},\mathrm{id}_C)$ on the basis of the non-independence of $\RV{Z}_i$ and $\RV{X}_i$.
-
-Another relation between theory of causal graphical models and the present work may be found in the \emph{causal version of the principle of maximum entropy} \citep{sunCausalInferenceChoosing2006,janzingCausalVersionsMaximum2021}. The causal version of the principle of maximum entropy, in contrast to the standard version of the principle, suggests that priors be specified by sequentially maximising the entropy of a cause, then maximising the conditional entropy of the first effect given the cause and so forth. While the cited articles discuss using the principle of entropy maximisation to specify prior distributions over observed variables rather than distributions over directing conditionals, the same principle may perhaps be applied to the specification of priors over directing conditionals. We posit that the causal version of the prinicple of maximum entropy might support a similar line of argument: if $\RV{Y}_i\CI^e_{\prob{Q}}(\RV{E}_i,\RV{Z}_i)|(\RV{X}_i,\RV{G},\mathrm{id}_C)$ but not $\RV{E}_i\CI^e_{\prob{Q}} \RV{Z}_i|(\RV{G},\mathrm{id}_C)$ and $\RV{Z}_i$ is an ancestor of $\RV{E}_i$ and $(\RV{E}_i,\RV{Z}_i)$ is an ancestor of $(\RV{X}_i,\RV{Y}_i)$, then perhaps the causal version of the principle of maximum entropy offers some support for the diverse precedent assumption. Note that this (as well as the implication suggested in the previous paragraph) are highly speculative.
-
-The causal version of the principle of maximum entropy is itself motivated by the general principle of \emph{independent causal mechanisms}. 
-
+In this discussion, we have suggested that structural causal models may play a role informing judgements of mutual absolute continuity. While this is a standard feature of the interpretation of structural causal models -- and \citet{lemeire_replacing_2013} has proposed that this idea should play a critical role in our understanding of causal structures -- for the purposes of assessing consequences of actions, the interpretation of causal models as ``interventional oracles'' \citep[Section 1.3.1]{pearl_causality:_2009} is usually given prominence. Here, we consider precedent as an alternative to the assumption of structural interventions, and lean on the interpretation of mutual absolute continuity to derive nontrivial conclusions.
 
 \section{Conclusion}
 
@@ -188,3 +165,4 @@ Nevertheless, this work leaves many open questions for causal inference in the l
 For practical purposes, a generalisation of Theorem \ref{th:latent_to_observable} to approximate independence is in order, and such a generalisation may also bring additional clarity to the diverse precedent assumption.
 
 Despite these challenges, we are encouraged by a number of features of this work. Using decision making as a starting point for constructing models means that, at the outset, we are only making commitments a decision maker is likely to already be making if they want to apply a formal theory of decision making. The informal idea of precedent that underpins Theorem \ref{th:latent_to_observable} seems like a general principle that may be applicable in a broad range of data-driven decision making problems. Finally, the apparent connection between Theorem \ref{th:latent_to_observable} suggests that much of the work already done in the world of causal graphical models may be applicable to our alternative perspective. Causal inference under circumstances of limited prior knowledge presents many hard conceptual as well as practical problems, and our approach is a promising new avenue of investigation.
+
