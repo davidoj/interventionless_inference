@@ -102,54 +102,6 @@ We show that the assumption of conditional independence imposes a polynomial con
 Full proof in Appendix \ref{sec:proof_precedent}.
 \end{proof}
 
-<<<<<<< HEAD
-\section[Independent mechanisms]{Diversity, interventional models and the principle of independent causal mechanisms}
-
-In this section we will present an informal argument that connects the principal of \emph{diversity} (Def. \ref{def:diverse_precedent}) to a particular family of structural interventional models via the principle of independent causal mechanisms.
-
-As we have already mentioned ``precedent'' part of Definition \ref{def:diverse_precedent} can be intepreted as the assumption that whatever the decision maker can do has been done before. It is more likely to be acceptable when the actions the decision maker is considering are common -- such as controlling body mass index by adopting a widely known diet -- and less likely to be acceptable when the decision maker is considering uncommon actions like controlling body mass index by removing limbs. It is less obvious what considerations might lead one to accept or reject the diversity condition.
-
-To better understand this, we note that Theorem \ref{th:latent_to_observable} can be informally summarised as follows:
-\begin{itemize}
-	\item If $\RV{Y}_i\CI^e_\prob{Q} \RV{Z}_i |(\RV{X}_i,\RV{G},\mathrm{id}_C)$ then we must either have ``alignment'' between $\RV{G}^{XE}_Z$ and $\RV{G}^{Y}_{EXZ}$ or we also have $\RV{Y}_i\CI^e_\prob{Q} \RV{E}_i |(\RV{X}_i,\RV{G},\mathrm{id}_C)$
-	\item If we assume diversity of $\RV{G}^{XE}_Z$ conditioned on $\RV{G}^{Y}_{EXZ}$ -- i.e. we rule out ``alignment'' -- then we must conclude $\RV{Y}_i\CI^e_\prob{Q} \RV{E}_i |(\RV{X}_i,\RV{G},\mathrm{id}_C)$
-\end{itemize}
-
-What we mean by ``alignment'' here is that $\RV{G}^{XE}_Z$ is restricted to some particular set of Lebesgue measure 0 conditioned on $\RV{G}^{Y}_{EXZ}$ in order to yield the independence $\RV{Y}_i\CI^e_\prob{Q} \RV{Z}_i |(\RV{X}_i,\RV{G},\mathrm{id}_C)$. ``Alignment'' of this form might seem like it would usually be unlikely, but this is not necessarily so. However, there are several reasons not to assume that the diversity condition is satisfied in general. 
-
-First, we require diversity to be satisfied \emph{after} observing $\RV{Y}_i\CI^e_\prob{Q} \RV{Z}_i |(\RV{X}_i,\RV{G},\mathrm{id}_C)$. If we accept diversity in this context, then we conclude $\RV{Y}_i\CI^e_\prob{Q} \RV{E}_i |(\RV{X}_i, \RV{Z}_i, \RV{G},\mathrm{id}_C)$, which is \emph{also} a Lebesgue measure 0 event with respect to $\Delta(Y)^{EXZ}$. Thus it's not enough to assume that violations of diversity are unlikely in general -- we have to assume that they are less likely than the conditional independence $\RV{Y}_i\CI^e_\prob{Q} \RV{E}_i |(\RV{X}_i, \RV{Z}_i, \RV{G},\mathrm{id}_C)$.
-
-Second, some violations of diversity may be relatively plausible. For example, the independence $\RV{E}_i\CI^e_\prob{Q} \RV{Z}_i |(\RV{G},\mathrm{id}_C)$ is a violation of diversity, but the unconditional independence of two variables is not, in general, an implausible event.
-
-Third, the \emph{principal of independent causal mechanisms} (ICM) offers another possible way for the assumption of diversity to fail\citep{lemeire_replacing_2013,peters_elements_2017}. ICM is an informal principle that posits conditionals like $\RV{G}^{XE}_Z$ and $\RV{G}^{Y}_{EXZ}$ will be ``independent'' or ``unaligned'' under structural causal assumptions that identify both of these conditionals as ``causal mechanisms''. Conversely, it is argued (for example in \citet[Ch. ~2]{peters_elements_2017}) that conditionals that do not correspond to ``causal mechanisms'' may exhibit ``alignment'' of the kind we have discussed here.
-
-The first of these reasons is a general caution against assuming diversity too readily in any situation. The second and third are two different ways that the diversity condition could fail. In fact, both of these failures of diversity can be illustrated with a particular family of graphical causal models.
-
-\subsection{Graphical models and causal mechanisms}
-
-A graphical causal model is defined in \citet[Ch. ~1]{pearl_causality:_2009} as a large collection of \emph{interventional conditionals} which can be compactly encoded with a probability distribution over a collection of variables together with a graph associated with these variables (see Definition \ref{def:vga}). We will consider a slightly different variety of graphical model; we will consider a \emph{graphical ciir model} to be a directed acyclic graph $\mathcal{G}$ associated with a latent CIIR model (Definition \ref{def:lciirm}) instead of a collection of interventional conditionals.
-
-\begin{definition}[Graphical CIIR model]
-A graphical CIIR model is a latent CIIR model $(\prob{P}_\cdot,(\RV{E}_i,\RV{Z}_{i},\RV{X}_i,\RV{Y}_i)_{i\in \mathbb{N}\cup\{c\}})$ along with a collection of directed acyclic graphs $\mathscr{G}:=\{\mathcal{G}_i|i\in A\subset\mathbb{N}\}$ associated with $(\RV{E}_c, \RV{Z}_c,\RV{X}_c,\RV{Y}_c)$.
-\end{definition}
-
-A \emph{causal mechanism} in a graphical CIIR model is a conditional distribution associated with a parental set in the associated graph $\mathcal{G}$.
-
-\begin{definition}[Causal mechanism]
-Given a CIIR model $(\prob{P}_\cdot,(\RV{E}_i,\RV{Z}_{i},\RV{X}_i,\RV{Y}_i)_{i\in \mathbb{N}\cup\{c\}})$ along with an associated graph $\mathcal{G}$, a \emph{causal mechanism} is a conditional distribution $\RV{G}^{V}_{\mathrm{Pa}_{\mathcal{G}}(\RV{V})}$ for any $V\in \{\RV{E}_c,\RV{Z}_c,\RV{X}_c,\RV{Y}_c\}$.
-\end{definition}
-
-We hold that every graph in a graphical CIIR model is associated with an event. We can condition on the event associated with $\mathcal{G}_i$ to yield the model that would obtain ``if we knew $\mathcal{G}_i$ were the correct caual graph''. We require that the model conditioned on a graph $\mathcal{G}_i$ is \emph{compatible} with this graph -- which reflects the common prescription that a probability distribution should be \emph{compatible} with an associated causal graph $\mathcal{G}$\citet[Ch. ~1]{pearl_causality:_2009} -- and we \emph{also} require that, after conditioning on a graph, the causal mechanisms in the graph are \emph{mutually diverse}. This is a formalisation of the principal of independent causal mechanisms. We treat graphs as conditioning events to reflect the fact that we do not necessarily know \emph{a priori} whether or not this compatibility holds for any given graph.
-
-\begin{definition}[Conditioning on a graph]
-We will assume that each graph $\mathcal{G}_i\in \mathscr{G}$ describes a conditioning event for the associated CIIR model $(\prob{P}_\cdot,(\RV{E}_i,\RV{Z}_{i},\RV{X}_i,\RV{Y}_i)_{i\in \mathbb{N}\cup\{c\}})$ such that, letting $\prob{P}_{\cdot,i}$ be the result of conditioning $\prob{P}_\cdot$ on the event associated with $\mathcal{G}_i$, we have:
-\begin{enumerate}
-	\item $V_j\perp_{\mathcal{G}} V_k|\RV{V}_l$ for $V_j,V_k,V_l\in \{E_c,Z_c,X_c,Y_c\}$ implies $\RV{V}_j\CI^e_{\prob{P}_{\cdot,i}} \RV{V}_k |(\RV{V}_l,\RV{G},\mathrm{Id}_C)$
-	\item $\prob{P}_{\alpha,i}^{\RV{G}^{V_j}_{\mathrm{Pa}_{\mathcal{G}_i}(V_j)}|(\RV{G}^{V_k}_{\mathrm{Pa}_{\mathcal{G}_i}}(V_k))_{k\neq j}}(\cdot|(g^{V_k}_{\mathrm{Pa}_{\mathcal{G}_i}(V_k)})_{k\neq j}) \ll U_{\Delta(V_j)}$ for all $\alpha, z$ and $\prob{P}_\alpha$-almost all $(g^{V_k}_{\mathrm{Pa}_{\mathcal{G}_i}(V_k)})_{k\neq j}$
-\end{enumerate}
-\end{definition}
-
-=======
 \section{Continuity and discovery}{Causal discovery and the absolute continuity assumption}
 
 We've suggested that the precedent assumption may be plausible when we suppose that the outcomes of interest exhibit a probabilistically regular response to some unobserved state, and that the values of this unobserved state that can be brought about through our actions have some precedent in the observed data. The continuity assumption deserves some more attention. Note that we require the continuity assumption to hold after conditioning on the independence of $\RV{Y}_i$ from $\RV{Z}_i$ given $\RV{X}_i$; the core of Theorem \ref{th:latent_to_observable} is that if we rule out the possibility of explaining this independence through a lack of ``continuity'' of the conditionals $\RV{G}^{X}_{EZ}$ and $\RV{G}^{E}_{Z}$, then it must be due to $\RV{Y}_i$ also being independent of $\RV{E}_i$ given $\RV{X}_i$. Under what circumstances would we want to rule out explaining this independence through a lack of continuity?
@@ -167,31 +119,13 @@ Putting these properties together, we have:
 	\item We may ``explain'' the independence $\RV{Y}_i\CI^e_{\prob{Q}} \RV{Z}_i | (\RV{G}, \mathrm{id}_C)$ with a hypothesised causal structure $\mathcal{G}$
 	\item If \emph{either} $\RV{Z}_i$ is a parent of $\RV{E}_i$ or $\RV{E}_i$ and $\RV{Z}_i$ are parents of $\RV{X}_i$ in $\mathcal{G}$ then the relevant continuity property for Theorem \ref{th:latent_to_observable} holds
 \end{itemize}
->>>>>>> 0d35ed3e099926a4a263bdae7d9805af4b6d5e15
 
 For example, suppose we consider a class of structural hypotheses $\mathcal{G}_i$ where, in all structures, we have $\RV{E}_i\rightarrowtriangle \RV{X}_i$ and $\RV{G}_i\rightarrowtriangle \RV{X}_i$. One such structure is illustrated below:
 
 \begin{align}
 	\mathcal{G}_1 := \tikzfig{structural_model_1} \label{eq:structural_model_1}
 \end{align}
-<<<<<<< HEAD
-We note in this graph that $\mathrm{Pa}_{\mathcal{G}}(\RV{E},\RV{X})=\RV{Z}$ and $\mathrm{Pa}_{\mathcal{G}}(\RV{Y})=\RV{X}$
 \end{example}
-
-, a ``causal mechanism'' is a conditional distribution $\RV{G}^{X}_{\mathrm{Pa}_{\mathcal{G}}(X)}$.
-
-\emph{Causal discovery} refers to a variety of strategies that aim to infer a causal structure from a set of observations. A common approach to causal discovery is to learn the causal structures that are faithful to the conditional independence structure of the observed data. We can use this approach to causal discovery to motivate the assumption of diversity as follows:
-\begin{itemize}
-	\item Begin with a set of possible causal structures $\mathscr{G}$
-	\item ``Observe'' $\RV{Y}_i\CI^e_\prob{Q} \RV{Z}_i |(\RV{X}_i,\RV{G},\mathrm{id}_C)$ and retain the subset $\mathscr{G}'$ faithful to this conditional indepdenence
-	\item Check whether $\RV{G}^{XE}_Z$ and $\RV{G}^{Y}_{EXZ}$ are independent causal mechanisms in the resulting set of causal structures
-\end{itemize}
-
-
-
-
-=======
->>>>>>> 0d35ed3e099926a4a263bdae7d9805af4b6d5e15
 
 In $\mathcal{G}_1$ (and, indeed, in every $\mathcal{G}_i$) we have $\mathrm{Pa}_{\mathcal{G}_i}(\RV{X}_i)=(\RV{Z}_i,\RV{E}_i)$. Furthermore, $\RV{G}^E_Z$ is determined by $\RV{G}^E$ and $\RV{G}^Z_E$, which are both parental parameters in $\mathcal{G}_1$ and therefore mutually absolutely continuous with $\RV{G}^X_{EZ}$. Finally, $\RV{G}^Y_{EXz} = \RV{G}^Y_{EX}$ for all $z\in Z$ is also a parental conditional and therefore also mutually absolutely continuous with $\RV{G}^X_{EZ}$. Thus, given hypothesis $\mathcal{G}_1$, if we also accept the assumption of precedent, Theorem \ref{th:latent_to_observable} follows. In fact, we can similarly argue that Theorem \ref{th:latent_to_observable} follows for all structures $\mathcal{G}_i$ where:
 \begin{itemize}
