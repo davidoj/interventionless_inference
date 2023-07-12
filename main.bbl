@@ -1,4 +1,4 @@
-\begin{thebibliography}{52}
+\begin{thebibliography}{54}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -305,6 +305,17 @@ Finnian Lattimore and David Rohde.
 \newblock URL \url{http://arxiv.org/abs/1906.07125}.
 \newblock arXiv: 1906.07125.
 
+\bibitem[Lemeire and Janzing(2013)]{lemeire_replacing_2013}
+Jan Lemeire and Dominik Janzing.
+\newblock Replacing {Causal} {Faithfulness} with {Algorithmic} {Independence}
+  of {Conditionals}.
+\newblock \emph{Minds and Machines}, 23\penalty0 (2):\penalty0 227--249, May
+  2013.
+\newblock ISSN 0924-6495, 1572-8641.
+\newblock \doi{10.1007/s11023-012-9283-1}.
+\newblock URL
+  \url{https://link.springer.com/article/10.1007/s11023-012-9283-1}.
+
 \bibitem[Lindley and Novick(1981)]{lindley_role_1981}
 D.~V. Lindley and Melvin~R. Novick.
 \newblock The {Role} of {Exchangeability} in {Inference}.
@@ -385,6 +396,12 @@ Jonas Peters, Peter Bühlmann, and Nicolai Meinshausen.
 \newblock \doi{10.1111/rssb.12167}.
 \newblock URL
   \url{https://rss.onlinelibrary.wiley.com/doi/abs/10.1111/rssb.12167}.
+
+\bibitem[Peters et~al.(2017)Peters, Janzing, and
+  Schölkopf]{peters_elements_2017}
+Jonas Peters, Dominik Janzing, and Bernard Schölkopf.
+\newblock \emph{Elements of {Causal} {Inference}}.
+\newblock MIT Press, 2017.
 
 \bibitem[Rubin(2005)]{rubin_causal_2005}
 Donald~B. Rubin.
