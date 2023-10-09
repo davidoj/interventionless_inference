@@ -271,8 +271,12 @@ Given a graph $\mathcal{G}=(\mathcal{V},\mathcal{E})$, a directed path is a sequ
 A directed graph $\mathcal{G}$ is a directed acyclic graph if it contains no directed paths beginning and ending at the same node.
 \end{definition}
 
-\begin{definition}[Parents]
+\begin{definition}[Parents, ancestors, nondescendents]
 Given a graph $\mathcal{G}=(\mathcal{V},\mathcal{E})$, the parents of a node $V_i$ are all the nodes $V_j$ such that there is an edge $(V_j, V_i)\in \mathcal{E}$: $\mathrm{Pa}(V_i)=\{V_j|(V_j,V_i)\in \sigalg{E}\}$.
+
+The ancestors of $V_i$ are all nodes $V_j$ which are either parents of $V_i$ or parents of ancestors of $V_i$ (this is a recursive definition).
+
+Nondescendents of $V_i$, $\mathrm{ND}(V_i)$, are nodes $V_j$ such that $V_i$ is not an ancestor of $V_j$.
 \end{definition}
 
 \begin{definition}[Model graph association]\label{def:mga}

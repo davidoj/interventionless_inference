@@ -108,6 +108,25 @@ We've already discussed the assumption of precedent, and suggested it may be pla
 
 When is such an assumption justified? We do not have a definitive answer to this question. However, standard assumptions made in the causal discovery literature imply conditional absolute continuity of parental conditional distributions. Thus, under standard interpretations of causal structure, conditional absolute continuity can be justified by structural assumptions. The assumption that causal structures imply conditional absolute continuity of parental conditionals is independent of the \emph{other} standard interpretation of structural causal models -- that they are ``atlases for interventions''. What we have shown is that if one is willing to accept the assumption of precedent then conditional absolute continuity is enough to draw conclusions about the consequences of actions from causal structures without additionally assuming some correspondence between actions and any kind of structural interventions.
 
+We offer a formal definition of the conditional absolute continuity interpretation of causal structures in the form of an \emph{absolutely continuous structural decision model}.
+
+\begin{definition}[Absolutely continuous structural decision model]
+An absolutely continuous structural decision model is a decision model $(\prob{P}_\cdot,\Omega,C)$ along with a collection of variable sequences $(\RV{X}^i_j)_{i\in A\subset\mathbb{N}, j\in B\subset\mathbb{N}}$ (where $\RV{X}^i_j$ and $\RV{X}^i_k$ are successive observations of the ``same kind of variable'') and a corresponding directed acyclic graph $\graph{G}$ with nodes $\{\node{X}^i|i\in A \}$. Letting $\node{X}^F:= \{\node{X}^i\|i\in F\subset A\}$ be the nodes with no parents in $\graph{G}$, we require that the corresponding variables $(\RV{X}^F, \RV{X}^{F^\complement})$ share conditionally independent and identical responses with parameter $\RV{H}$. We consider assuming $\graph{G}$ to impose further restrictions on the distribution of the parameter $\RV{H}$, which we will abuse notation to render as ``conditioning on $\RV{G}$'' (this is an abuse of our notation as $\graph{G}$ is not a random variable):
+\begin{itemize}
+	\item (Markov condition) for all $U\subset A$, $\RV{X}^{U}_j \CI^e_{\prob{P}_\cdot} \mathrm{ND}_{\graph{G}}(\RV{X}^U_j) | (\mathrm{Pa}_{\graph{G}} (\RV{X}^U_j), \mathrm{Id}_C, \graph{G})$
+	\item (Absolute continuity) the joint distribution of parameters $\prob{P}_\cdot^{(\RV{H}^{\RV{X}^i}}_{\mathrm{Pa}_\graph{G}(\RV{X}^i))_{i\in A}|\graph{G}}$ is absolutely continuous with respect to the uniform joint distribution on the space of parameters $(\RV{H}^{\RV{X}^i}}_{\mathrm{Pa}_\graph{G}(\RV{X}^i))_{i\in A}$.
+\end{itemize}
+\end{definition}
+
+Note that the absolute continuity condition implies that, for arbitrary $U, V\subset A$, $\prob{P}_\cdot^{(\RV{H}^{\RV{X}^i}}_{\mathrm{Pa}_\graph{G}(\RV{X}^i))_{i\in U}|(\RV{H}^{\RV{X}^i}}_{\mathrm{Pa}_\graph{G}(\RV{X}^i))_{i\in V}\graph{G}}$ is almost surely absolutely continuous with respect to the uniform joint distribution on the space of parameters $(\RV{H}^{\RV{X}^i}}_{\mathrm{Pa}_\graph{G}(\RV{X}^i))_{i\in U}$.
+
+Suppose we have an absolutely continuous structural decision model $(\prob{P}_\cdot,\Omega,C)$ where we have observed $\RV{Z}_i$ independent of $\RV{Y}_i$ given $\RV{X}_i$, and for which we have an arbitrary graph $\graph{G}$ satisfying the following three assumptions:
+\begin{enumerate}
+    \item $\RV{E}_i$ is a parent of $\RV{X}_i$ and not independent of $\RV{X}_i$
+    \item $\RV{Z}_i$ is a parent of $\RV{X}_i$ and not independent of $\RV{X}_i$
+    \item $\RV{X}_i$, $\RV{E}_i$ and $\RV{Z}_i$ are nondescendants of $\RV{Y}_i$
+\end{enumerate}
+
 
 
  (or together with structural assumptions imply conditional absolute continuity, which we will explain here. Causal structures have two useful properties for this purpose: first, they can ``explain'' conditional independences like $\RV{Y}_i$ is independent of $\RV{Z}_i$ given $\RV{X}_i$. Second, under standard interpretations, given a structural causal model, parental conditional probabilities are mutually continuous (in our terminology). This property has been noted before, and has been informally stated as the \emph{principle of independent causal mechanisms} (in spite of the name, parental conditional probabilities need not be probabilistically independent) \citep{lemeire_replacing_2013,peters_elements_2017}.
@@ -171,17 +190,13 @@ For practical purposes, a generalisation of Theorem \ref{th:latent_to_observable
 
 Despite these challenges, we are encouraged by a number of features of this work. Using decision making as a starting point for constructing models means that, at the outset, we are only making commitments a decision maker is likely to already be making if they want to apply a formal theory of decision making. The informal idea of precedent that underpins Theorem \ref{th:latent_to_observable} seems like a general principle that may be applicable in a broad range of data-driven decision making problems. Finally, the apparent connection between Theorem \ref{th:latent_to_observable} suggests that much of the work already done in the world of causal graphical models may be applicable to our alternative perspective. Causal inference under circumstances of limited prior knowledge presents many hard conceptual as well as practical problems, and our approach is a promising new avenue of investigation.
 
+
+
 More precisely, the assumption that parental conditionals are mutually absolutely continuous is explicit in Bayesian approaches to causal discovery such as \citet{heckerman_learning_1995}. It is arguably implicit in the justification for non-Bayesian approaches such as in \citet{meek_strong_1995}, who argues that it is reasonable to neglect sets of parental conditionals that have Lebesgue measure zero (though no explicit prior is placed on the parameters). The general idea that parental conditionals will usually avoid ``precise coordination'' has also been suggested as an alternative foundation for causal discovery \citet{lemeire_replacing_2013,mooij_j.m._distinguishing_2016,janzingInformationgeometricApproachInferring2012}. 
 
 
 Concretely, some structural models imply conditional absolute continuity in the sense of Definition \ref{def:absolute_continuity}. If we are able to narrow our structural hypotheses to a subset of these models, then we can conclude that conditional absolute continuity holds and (if we also have precedent), so does Theorem \ref{th:latent_to_observable}.
 
-For example, suppose that we observe $\RV{Z}_i$ independent of $\RV{Y}_i$ given $\RV{X}_i$ and also make the following three structural assumptions:
-\begin{enumerate}
-    \item $\RV{E}_i$ is a parent of $\RV{X}_i$ (and not independent of $\RV{X}_i$)
-    \item $\RV{Z}_i$ is a parent of $\RV{X}_i$ (and not independent of $\RV{X}_i$)
-    \item $\RV{X}_i$, $\RV{E}_i$ and $\RV{Z}_i$ are nondescendants of $\RV{Y}_i$
-\end{enumerate}
 
 If the investigator is confident a priori that their actions will affect $\RV{X}_i$, we might justify the first assumption by arguing that their actions affect the observed $\RV{X}_i$ via the unobserved $\RV{E}_i$ and $\RV{X}_i$ is thus a descendant of $\RV{E}_i$. The non-independence of $\RV{Z}_i$ and $\RV{X}_i$ may be observed, and the direction of their relationship may be argued on the basis of temporal ordering, or inferred via, for example, one of the methods in \citep{peters_elements_2017}. The third assumption may be justified by appealing to faithfulness given the observed conditional independence and the first two assumptions, as graphs satisfying 1 and 2 but not 3 will not feature $\RV{Y}_i$ d-separated from $\RV{Z}_i$ given $\RV{E}_i$.    
 
