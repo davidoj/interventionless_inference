@@ -114,19 +114,20 @@ We offer a formal definition of the conditional absolute continuity interpretati
 An absolutely continuous structural decision model is a decision model $(\prob{P}_\cdot,\Omega,C)$ along with a collection of variable sequences $(\RV{X}^i_j)_{i\in A\subset\mathbb{N}, j\in B\subset\mathbb{N}}$ (where $\RV{X}^i_j$ and $\RV{X}^i_k$ are successive observations of the ``same kind of variable'') and a corresponding directed acyclic graph $\graph{G}$ with nodes $\{\node{X}^i|i\in A \}$. Letting $\node{X}^F:= \{\node{X}^i\|i\in F\subset A\}$ be the nodes with no parents in $\graph{G}$, we require that the corresponding variables $(\RV{X}^F, \RV{X}^{F^\complement})$ share conditionally independent and identical responses with parameter $\RV{H}$. We consider assuming $\graph{G}$ to impose further restrictions on the distribution of the parameter $\RV{H}$, which we will abuse notation to render as ``conditioning on $\RV{G}$'' (this is an abuse of our notation as $\graph{G}$ is not a random variable):
 \begin{itemize}
 	\item (Markov condition) for all $U\subset A$, $\RV{X}^{U}_j \CI^e_{\prob{P}_\cdot} \mathrm{ND}_{\graph{G}}(\RV{X}^U_j) | (\mathrm{Pa}_{\graph{G}} (\RV{X}^U_j), \mathrm{Id}_C, \graph{G})$
-	\item (Absolute continuity) the joint distribution of parameters $\prob{P}_\cdot^{(\RV{H}^{\RV{X}^i}}_{\mathrm{Pa}_\graph{G}(\RV{X}^i))_{i\in A}|\graph{G}}$ is absolutely continuous with respect to the uniform joint distribution on the space of parameters $(\RV{H}^{\RV{X}^i}}_{\mathrm{Pa}_\graph{G}(\RV{X}^i))_{i\in A}$.
-\end{itemize}
+	\item (Absolute continuity) the joint distribution of parameters $\prob{P}_\cdot^{(\RV{H}^{\RV{X}^i}}_{\mathrm{Pa}_\graph{G}(\RV{X}^i))_{i\in A}|\graph{G}}$ is absolutely continuous with respect to the uniform joint distribution on the space of parameters $(\RV{H}^{\RV{X}^i}_{\mathrm{Pa}_\graph{G}(\RV{X}^i)})_{i\in A}$.
+\end{itemize} 
 \end{definition}
 
-Note that the absolute continuity condition implies that, for arbitrary $U, V\subset A$, $\prob{P}_\cdot^{(\RV{H}^{\RV{X}^i}}_{\mathrm{Pa}_\graph{G}(\RV{X}^i))_{i\in U}|(\RV{H}^{\RV{X}^i}}_{\mathrm{Pa}_\graph{G}(\RV{X}^i))_{i\in V}\graph{G}}$ is almost surely absolutely continuous with respect to the uniform joint distribution on the space of parameters $(\RV{H}^{\RV{X}^i}}_{\mathrm{Pa}_\graph{G}(\RV{X}^i))_{i\in U}$.
+Note that the absolute continuity condition implies that, for arbitrary $U, V\subset A$, $\prob{P}_\cdot^{(\RV{H}^{\RV{X}^i}}_{\mathrm{Pa}_\graph{G}(\RV{X}^i))_{i\in U}|(\RV{H}^{\RV{X}^i}}_{\mathrm{Pa}_\graph{G}(\RV{X}^i))_{i\in V}\graph{G}}$ is almost surely absolutely continuous with respect to the uniform joint distribution on the space of parameters $(\RV{H}^{\RV{X}^i}_{\mathrm{Pa}_\graph{G}(\RV{X}^i)})_{i\in U}$. 
 
-Suppose we have an absolutely continuous structural decision model $(\prob{P}_\cdot,\Omega,C)$ where we have observed $\RV{Z}_i$ independent of $\RV{Y}_i$ given $\RV{X}_i$, and for which we have an arbitrary graph $\graph{G}$ satisfying the following three assumptions:
+Suppose we have an absolutely continuous structural decision model $(\prob{P}_\cdot,\Omega,C)$ where we have observed $\RV{Z}_i$ independent of $\RV{Y}_i$ given $\RV{X}_i$, and for which we have an arbitrary graph $\graph{G}$ with nodes $\node{E}, \node{X}, \node{Y}, \node{Z}$ satisfying the following three assumptions
 \begin{enumerate}
     \item $\RV{E}_i$ is a parent of $\RV{X}_i$ and not independent of $\RV{X}_i$
     \item $\RV{Z}_i$ is a parent of $\RV{X}_i$ and not independent of $\RV{X}_i$
     \item $\RV{X}_i$, $\RV{E}_i$ and $\RV{Z}_i$ are nondescendants of $\RV{Y}_i$
 \end{enumerate}
 
+Under these assumptions, $\mathrm{Pa}_\graph{G}(\RV{X}_i) = (\RV{E}_i, \RV{Z}_i)$, while $\mathrm{Pa}_\graph{G}(\RV{E}_i)$ may be $\RV{Z}_i$ or empty, $\mathrm{Pa}_\graph{G}(\RV{Z}_i)$ may be $\RV{E}_i$ or empty and $\mathrm{Pa}_{\graph{G}}(\RV{Y}_i)$ may be any subsequence of $(\RV{E}_i,\RV{X}_i,\RV{Z}_i)$. 
 
 
  (or together with structural assumptions imply conditional absolute continuity, which we will explain here. Causal structures have two useful properties for this purpose: first, they can ``explain'' conditional independences like $\RV{Y}_i$ is independent of $\RV{Z}_i$ given $\RV{X}_i$. Second, under standard interpretations, given a structural causal model, parental conditional probabilities are mutually continuous (in our terminology). This property has been noted before, and has been informally stated as the \emph{principle of independent causal mechanisms} (in spite of the name, parental conditional probabilities need not be probabilistically independent) \citep{lemeire_replacing_2013,peters_elements_2017}.
