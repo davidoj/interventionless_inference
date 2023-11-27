@@ -1,18 +1,9 @@
-\begin{thebibliography}{54}
+\begin{thebibliography}{41}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
-
-\bibitem[Badsha and Fu(2019)]{badshaLearningCausalBiological2019}
-Md.~Bahadur Badsha and Audrey~Qiuyan Fu.
-\newblock Learning {Causal} {Biological} {Networks} {With} the {Principle} of
-  {Mendelian} {Randomization}.
-\newblock \emph{Frontiers in Genetics}, 10, 2019.
-\newblock ISSN 1664-8021.
-\newblock URL
-  \url{https://www.frontiersin.org/articles/10.3389/fgene.2019.00460}.
 
 \bibitem[Banerjee et~al.(2017)Banerjee, Chassang, and
   Snowberg]{banerjee_chapter_2017}
@@ -26,28 +17,10 @@ A.~V. Banerjee, S.~Chassang, and E.~Snowberg.
 \newblock URL
   \url{https://www.sciencedirect.com/science/article/pii/S2214658X16300071}.
 
-\bibitem[Brouillard et~al.(2020)Brouillard, Lachapelle, Lacoste,
-  Lacoste-Julien, and Drouin]{brouillard_differentiable_2020}
-Philippe Brouillard, Sébastien Lachapelle, Alexandre Lacoste, Simon
-  Lacoste-Julien, and Alexandre Drouin.
-\newblock Differentiable {Causal} {Discovery} from {Interventional} {Data}.
-\newblock In \emph{Advances in {Neural} {Information} {Processing} {Systems}},
-  volume~33, pages 21865--21877. Curran Associates, Inc., 2020.
-\newblock URL
-  \url{https://proceedings.neurips.cc/paper/2020/hash/f8b7aa3a0d349d9562b424160ad18612-Abstract.html}.
-
 \bibitem[\c{C}inlar(2011)]{cinlar_probability_2011}
 Erhan \c{C}inlar.
 \newblock \emph{Probability and Stochastics}.
 \newblock Springer, 2011.
-
-\bibitem[Chickering(2003)]{chickering_optimal_2003}
-David~Maxwell Chickering.
-\newblock Optimal {Structure} {Identification} with {Greedy} {Search}.
-\newblock \emph{J. Mach. Learn. Res.}, 3:\penalty0 507--554, March 2003.
-\newblock ISSN 1532-4435.
-\newblock \doi{10.1162/153244303321897717}.
-\newblock URL \url{https://doi.org/10.1162/153244303321897717}.
 
 \bibitem[Cho and Jacobs(2019)]{cho_disintegration_2019}
 Kenta Cho and Bart Jacobs.
@@ -65,17 +38,6 @@ Panayiota Constantinou and A.~Philip Dawid.
   2618--2653, 2017.
 \newblock ISSN 0090-5364.
 \newblock URL \url{http://www.jstor.org/stable/26362953}.
-
-\bibitem[Correa and Bareinboim(2020)]{correa_calculus_2020}
-Juan Correa and Elias Bareinboim.
-\newblock A {Calculus} for {Stochastic} {Interventions}:{Causal} {Effect}
-  {Identification} and {Surrogate} {Experiments}.
-\newblock \emph{Proceedings of the AAAI Conference on Artificial Intelligence},
-  34\penalty0 (06):\penalty0 10093--10100, April 2020.
-\newblock ISSN 2374-3468.
-\newblock \doi{10.1609/aaai.v34i06.6567}.
-\newblock URL \url{https://ojs.aaai.org/index.php/AAAI/article/view/6567}.
-\newblock Number: 06.
 
 \bibitem[Dawid(2020)]{dawid_decision-theoretic_2020}
 A.~Philip Dawid.
@@ -103,12 +65,6 @@ Bruno de~Finetti.
 \newblock \doi{10.1007/978-1-4612-0919-5_10}.
 \newblock URL \url{https://doi.org/10.1007/978-1-4612-0919-5_10}.
 
-\bibitem[Eberhardt and Scheines(2007)]{eberhardt_interventions_2007}
-Frederick Eberhardt and Richard Scheines.
-\newblock Interventions and {Causal} {Inference}.
-\newblock \emph{Philos. Sci.}, 74, December 2007.
-\newblock \doi{10.1086/525638}.
-
 \bibitem[Eckles and Bakshy(2021)]{eckles_bias_2021}
 Dean Eckles and Eytan Bakshy.
 \newblock Bias and {High}-{Dimensional} {Adjustment} in {Observational}
@@ -127,14 +83,6 @@ Brendan Fong.
 \newblock URL \url{http://arxiv.org/abs/1301.6201}.
 \newblock arXiv: 1301.6201.
 
-\bibitem[Forré and Mooij(2018)]{forre_constraint-based_2018}
-Patrick Forré and Joris~M. Mooij.
-\newblock Constraint-based {Causal} {Discovery} for {Non}-{Linear} {Structural}
-  {Causal} {Models} with {Cycles} and {Latent} {Confounders}.
-\newblock \emph{arXiv:1807.03024 [cs, stat]}, July 2018.
-\newblock URL \url{http://arxiv.org/abs/1807.03024}.
-\newblock arXiv: 1807.03024.
-
 \bibitem[Fritz(2020)]{fritz_synthetic_2020}
 Tobias Fritz.
 \newblock A synthetic approach to {Markov} kernels, conditional independence
@@ -144,17 +92,6 @@ Tobias Fritz.
 \newblock \doi{10.1016/j.aim.2020.107239}.
 \newblock URL
   \url{https://www.sciencedirect.com/science/article/pii/S0001870820302656}.
-
-\bibitem[Glymour and Spiegelman(2017)]{glymour_evaluating_2017}
-M.~Maria Glymour and Donna Spiegelman.
-\newblock Evaluating {Public} {Health} {Interventions}: 5. {Causal} {Inference}
-  in {Public} {Health} {Research}—{Do} {Sex}, {Race}, and {Biological}
-  {Factors} {Cause} {Health} {Outcomes}?
-\newblock \emph{American Journal of Public Health}, 107\penalty0 (1):\penalty0
-  81--85, January 2017.
-\newblock ISSN 0090-0036.
-\newblock \doi{10.2105/AJPH.2016.303539}.
-\newblock URL \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5308179/}.
 
 \bibitem[Gordon et~al.(2018)Gordon, Zettelmeyer, Bhargava, and
   Chapsky]{gordon_comparison_2018}
@@ -192,15 +129,6 @@ Siyuan Guo, Viktor Tóth, Bernhard Schölkopf, and Ferenc Huszár.
 \newblock URL
   \url{https://www.researchgate.net/publication/359574681_Causal_de_Finetti_On_the_Identification_of_Invariant_Causal_Structure_in_Exchangeable_Data}.
 
-\bibitem[Hauser and Bühlmann(2012)]{hauser_characterization_2012}
-Alain Hauser and Peter Bühlmann.
-\newblock Characterization and {Greedy} {Learning} of {Interventional} {Markov}
-  {Equivalence} {Classes} of {Directed} {Acyclic} {Graphs}.
-\newblock \emph{Journal of Machine Learning Research}, 13\penalty0
-  (79):\penalty0 2409--2464, 2012.
-\newblock ISSN 1533-7928.
-\newblock URL \url{http://jmlr.org/papers/v13/hauser12a.html}.
-
 \bibitem[Heckerman and Shachter(1995)]{heckerman_decision-theoretic_1995}
 D.~Heckerman and R.~Shachter.
 \newblock Decision-{Theoretic} {Foundations} for {Causal} {Reasoning}.
@@ -209,6 +137,17 @@ D.~Heckerman and R.~Shachter.
 \newblock ISSN 1076-9757.
 \newblock \doi{10.1613/jair.202}.
 \newblock URL \url{https://www.jair.org/index.php/jair/article/view/10151}.
+
+\bibitem[Heckerman et~al.(1995)Heckerman, Geiger, and
+  Chickering]{heckerman_learning_1995}
+David Heckerman, Dan Geiger, and David~M. Chickering.
+\newblock Learning {Bayesian} networks: {The} combination of knowledge and
+  statistical data.
+\newblock \emph{Machine Learning}, 20\penalty0 (3):\penalty0 197--243,
+  September 1995.
+\newblock ISSN 1573-0565.
+\newblock \doi{10.1007/BF00994016}.
+\newblock URL \url{https://doi.org/10.1007/BF00994016}.
 
 \bibitem[Hernán and Taubman(2008)]{hernan_does_2008}
 M.~A. Hernán and S.~L. Taubman.
@@ -269,18 +208,6 @@ Guido~W. Imbens and Donald~B. Rubin.
 \newblock URL
   \url{https://www.cambridge.org/core/books/causal-inference-for-statistics-social-and-biomedical-sciences/71126BE90C58F1A431FE9B2DD07938AB}.
 
-\bibitem[Janzing(2021)]{janzingCausalVersionsMaximum2021}
-Dominik Janzing.
-\newblock Causal versions of maximum entropy and principle of insufficient
-  reason.
-\newblock \emph{Journal of Causal Inference}, 9\penalty0 (1):\penalty0
-  285--301, January 2021.
-\newblock ISSN 2193-3685.
-\newblock \doi{10.1515/jci-2021-0022}.
-\newblock URL
-  \url{https://www.degruyter.com/document/doi/10.1515/jci-2021-0022/html}.
-\newblock Publisher: De Gruyter.
-
 \bibitem[Kallenberg(2005)]{kallenberg_basic_2005}
 Olav Kallenberg.
 \newblock The {Basic} {Symmetries}.
@@ -324,6 +251,15 @@ D.~V. Lindley and Melvin~R. Novick.
 \newblock ISSN 0090-5364.
 \newblock URL \url{https://www.jstor.org/stable/2240868}.
 
+\bibitem[Liu and Price(2020)]{liu_ramsey_2020}
+Yang Liu and Huw Price.
+\newblock Ramsey and {Joyce} on deliberation and prediction.
+\newblock \emph{Synthese}, 197\penalty0 (10):\penalty0 4365--4386, October
+  2020.
+\newblock ISSN 1573-0964.
+\newblock \doi{10.1007/s11229-018-01926-8}.
+\newblock URL \url{https://doi.org/10.1007/s11229-018-01926-8}.
+
 \bibitem[Meek(1995)]{meek_strong_1995}
 Christopher Meek.
 \newblock Strong {Completeness} and {Faithfulness} in {Bayesian} {Networks}.
@@ -334,15 +270,17 @@ Christopher Meek.
 \newblock URL \url{http://dl.acm.org/citation.cfm?id=2074158.2074205}.
 \newblock event-place: Montréal, Qué, Canada.
 
-\bibitem[Ng et~al.(2019)Ng, Zhu, Chen, and
-  Fang]{ngGraphAutoencoderApproach2019}
-Ignavier Ng, Shengyu Zhu, Zhitang Chen, and Zhuangyan Fang.
-\newblock A {Graph} {Autoencoder} {Approach} to {Causal} {Structure}
-  {Learning}.
-\newblock November 2019.
-\newblock \doi{10.48550/arXiv.1911.07420}.
-\newblock URL \url{http://arxiv.org/abs/1911.07420}.
-\newblock Number: arXiv:1911.07420 arXiv:1911.07420 [cs, stat].
+\bibitem[{Mooij, J.M.} et~al.(2016){Mooij, J.M.}, {Peters, J.}, {Janzing, D.},
+  {Zscheischler, J.}, {Schölkopf, B.}, and {Amsterdam Machine Learning lab
+  (IVI, FNWI)}]{mooij_j.m._distinguishing_2016}
+{Mooij, J.M.}, {Peters, J.}, {Janzing, D.}, {Zscheischler, J.}, {Schölkopf,
+  B.}, and {Amsterdam Machine Learning lab (IVI, FNWI)}.
+\newblock Distinguishing {Cause} from {Effect} {Using} {Observational} {Data}:
+  {Methods} and {Benchmarks}.
+\newblock \emph{Journal of Machine Learning Research}, 17, 2016.
+\newblock ISSN 1532-4435.
+\newblock URL
+  \url{http://dare.uva.nl/personal/pure/en/publications/distinguishing-cause-from-effect-using-observational-data-methods-and-benchmarks(f4e35a2b-cd22-41a4-93e5-7f0b1cf8090a).html}.
 
 \bibitem[Okamoto(1973)]{okamoto_distinctness_1973}
 Masashi Okamoto.
@@ -367,23 +305,6 @@ Judea Pearl.
 \newblock \doi{10.1515/jci-2018-2001}.
 \newblock URL
   \url{https://www.degruyter.com/view/j/jci.2018.6.issue-2/jci-2018-2001/jci-2018-2001.xml}.
-
-\bibitem[Pearl and Mackenzie(2018)]{pearl_book_2018}
-Judea Pearl and Dana Mackenzie.
-\newblock \emph{The {Book} of {Why}: {The} {New} {Science} of {Cause} and
-  {Effect}}.
-\newblock Basic Books, New York, 1 edition edition, May 2018.
-\newblock ISBN 978-0-465-09760-9.
-
-\bibitem[Peters and Bühlmann(2015)]{peters_structural_2015}
-Jonas Peters and Peter Bühlmann.
-\newblock Structural {Intervention} {Distance} for {Evaluating} {Causal}
-  {Graphs}.
-\newblock \emph{Neural Computation}, 27\penalty0 (3):\penalty0 771--799,
-  January 2015.
-\newblock ISSN 0899-7667.
-\newblock \doi{10.1162/NECO_a_00708}.
-\newblock URL \url{https://doi.org/10.1162/NECO_a_00708}.
 
 \bibitem[Peters et~al.(2016)Peters, Bühlmann, and
   Meinshausen]{peters_causal_2016}
@@ -419,16 +340,6 @@ Olli Saarela, David~A. Stephens, and Erica E.~M. Moodie.
 \newblock \doi{10.48550/arXiv.2006.01799}.
 \newblock URL \url{https://arxiv.org/abs/2006.01799v3}.
 
-\bibitem[Scherrer et~al.(2022)Scherrer, Bilaniuk, Annadani, Goyal, Schwab,
-  Schölkopf, Mozer, Bengio, Bauer, and Ke]{scherrer_learning_2022}
-Nino Scherrer, Olexa Bilaniuk, Yashas Annadani, Anirudh Goyal, Patrick Schwab,
-  Bernhard Schölkopf, Michael~C. Mozer, Yoshua Bengio, Stefan Bauer, and
-  Nan~Rosemary Ke.
-\newblock Learning {Neural} {Causal} {Models} with {Active} {Interventions},
-  March 2022.
-\newblock URL \url{http://arxiv.org/abs/2109.02429}.
-\newblock arXiv:2109.02429 [cs, stat].
-
 \bibitem[Selinger(2011)]{selinger_survey_2011}
 P.~Selinger.
 \newblock A {Survey} of {Graphical} {Languages} for {Monoidal} {Categories}.
@@ -447,44 +358,26 @@ Eyal Shahar.
 \newblock ISSN 1476-6256.
 \newblock \doi{10.1093/aje/kwp292}.
 
-\bibitem[Spirtes et~al.(1993)Spirtes, Glymour, and
-  Scheines]{spirtes_causation_1993}
-Peter Spirtes, Clark Glymour, and Richard Scheines.
-\newblock \emph{Causation, {Prediction}, and {Search}}, volume~81.
-\newblock January 1993.
-\newblock \doi{10.1007/978-1-4612-2748-9}.
-
-\bibitem[Sun et~al.(2006)Sun, Janzing, and
-  Schölkopf]{sunCausalInferenceChoosing2006}
-Xiaohai Sun, Dominik Janzing, and Bernhard Schölkopf.
-\newblock Causal {Inference} by {Choosing} {Graphs} with {Most} {Plausible}
-  {Markov} {Kernels}.
-\newblock January 2006.
-
-\bibitem[Toth et~al.(2022)Toth, Lorch, Knoll, Krause, Pernkopf, Peharz, and von
-  Kügelgen]{toth_active_2022}
-Christian Toth, Lars Lorch, Christian Knoll, Andreas Krause, Franz Pernkopf,
-  Robert Peharz, and Julius von Kügelgen.
-\newblock Active {Bayesian} {Causal} {Inference}, June 2022.
-\newblock URL \url{http://arxiv.org/abs/2206.02063}.
-\newblock arXiv:2206.02063 [cs, stat].
-
-\bibitem[Yang et~al.(2018)Yang, Katoff, and Uhler]{yang_characterizing_2018}
-Karren Yang, Abigail Katoff, and Caroline Uhler.
-\newblock Characterizing and {Learning} {Equivalence} {Classes} of {Causal}
-  {DAGs} under {Interventions}.
-\newblock In \emph{International {Conference} on {Machine} {Learning}}, pages
-  5537--5546, July 2018.
-\newblock URL \url{http://proceedings.mlr.press/v80/yang18a.html}.
-
-\bibitem[Zheng et~al.(2018)Zheng, Aragam, Ravikumar, and
-  Xing]{zhengDAGsNOTEARS2018}
-Xun Zheng, Bryon Aragam, Pradeep~K Ravikumar, and Eric~P Xing.
-\newblock {DAGs} with {NO} {TEARS}: {Continuous} {Optimization} for {Structure}
-  {Learning}.
-\newblock In \emph{Advances in {Neural} {Information} {Processing} {Systems}},
-  volume~31. Curran Associates, Inc., 2018.
+\bibitem[Spirtes and Scheines(2004)]{spirtes_causal_2004}
+Peter Spirtes and Richard Scheines.
+\newblock Causal {Inference} of {Ambiguous} {Manipulations}.
+\newblock \emph{Philosophy of Science}, 71\penalty0 (5):\penalty0 833--845,
+  December 2004.
+\newblock ISSN 0031-8248, 1539-767X.
+\newblock \doi{10.1086/425058}.
 \newblock URL
-  \url{https://proceedings.neurips.cc/paper/2018/hash/e347c51419ffb23ca3fd5050202f9c3d-Abstract.html}.
+  \url{https://www.cambridge.org/core/journals/philosophy-of-science/article/abs/causal-inference-of-ambiguous-manipulations/2A605BCFFC1A879A157966473AC2A6D2}.
+\newblock Publisher: Cambridge University Press.
+
+\bibitem[Zhang and Spirtes(2003)]{zhang_strong_2003}
+Jiji Zhang and Peter Spirtes.
+\newblock Strong {Faithfulness} and {Uniform} {Consistency} in {Causal}
+  {Inference}.
+\newblock In \emph{Proceedings of the {Nineteenth} {Conference} on
+  {Uncertainty} in {Artificial} {Intelligence}}, {UAI}'03, pages 632--639, San
+  Francisco, CA, USA, 2003. Morgan Kaufmann Publishers Inc.
+\newblock ISBN 978-0-12-705664-7.
+\newblock URL \url{http://dl.acm.org/citation.cfm?id=2100584.2100661}.
+\newblock event-place: Acapulco, Mexico.
 
 \end{thebibliography}

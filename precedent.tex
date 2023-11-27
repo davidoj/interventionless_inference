@@ -6,7 +6,7 @@ We have suggested that conditionally independent and identical responses is usua
 
 To simplify the presentation, we will consider a specific kind of decision model featuring long sequence of exchangeable observations indexed by natural numbers that are unresponsive to the decision maker's choice and ``one more'' variable representing the ``consequences of action'' indexed by the special character $c$ that may be responsible ot the decision maker's choice. That is, we have $(\RV{X}_i)_{i\in \mathbb{N}}$ unresponsive to the decision maker and $(\RV{X}_c)$ responsive to the decision maker. Call this setup a ``see-do model''.
 
-\begin{definition}[See-do model]
+\begin{definition}[See-do model]\label{def:seedo}
 A see-do model is an decision model $(\prob{P}_\cdot,\Omega,C)$ along with a sequence of variables $\RV{X}_{\mathbb{N}\cup\{c\}}$ where $\RV{X}_{\mathbb{N}}\CI^e_{\prob{P}_\cdot} \mathrm{id}_C$. Variables indexed with $i\in \mathbb{N}$ are referred to as \emph{observations} and variables indexed with the special index $c$ are referred to as \emph{consequences}. We specify a see-do model with the shorthand $(\prob{P}_\cdot,\RV{X}_{\mathbb{N}\cup\{c\}})$.
 \end{definition}
 
@@ -60,15 +60,21 @@ This inference might fail if, for any reason, the variation in treatment plans a
 If the decision maker finds that $\RV{Y}_i$ is not independent of $\RV{Z}_i$ given $\RV{X}_i$, they may also consider whether $\RV{Y}_i$ is independent of $\RV{Z}_i$ given $(\RV{V}_i,\RV{X}_i)$ for some set of covariates $\RV{V}_i$.
 \end{example}
 
-Theorem \ref{th:latent_to_observable} establishes formal conditions for the informal deduction described in Example \ref{ex:doctor_precedent}. We assume that all variables of interest are discrete, and make use of an alternative notation for discrete conditional probabilities.
+Theorem \ref{th:latent_to_observable} establishes some sufficient conditions for the informal deduction described in Example \ref{ex:doctor_precedent}. We assume that all variables of interest are discrete, and make use of an alternative notation for discrete conditional probabilities.
 
-\begin{definition}[Index notation for discrete conditionals]
-Given a joint probability distribution $\mu^{\RV{XY}}$ with $\RV{X}$ and $\RV{Y}$ discrete, let $\mu^y_x:=\mu^{\RV{Y}|\RV{X}}(\{y\}|x)$ and $\mu^Y_X:= (x,y)\mapsto \mu^y_x$
+\begin{definition}[Index notation for discrete conditional distributions]
+Given a joint probability distribution $\mu^{\RV{XY}}$ with $\RV{X}$ and $\RV{Y}$ discrete, let $\mu^y_x:=\mu^{\RV{Y}|\RV{X}}(\{y\}|x)$ and $\mu^{\RV{Y}}_{\RV{X}}:= (x,y)\mapsto \mu^y_x$.
 \end{definition}
 
-The key assumption for Theorem \ref{th:latent_to_observable} is an assumption we call \emph{diverse precedent}. It's a rather complicated assumption. It imposes a domination condition that requires (roughly speaking) that the distribution of the latent input $\RV{E}_i$ given event $\RV{Z}_i=z$ almost surely dominates the distribution induced by any option we can choose (as in the discussion of precedent above) \emph{and} is almost surely ``diverse'' for different values of $\RV{Z}_i$.
+The first assumption we make is \emph{precedent}. This assumption strengthens our latent CIIR model by asserting that any distributions over the latent variable that can be accomplished by the decision maker's actions are dominated by the ``observational'' distribution. That is, loosely speaking, ``anything the decision maker can do has been done before and its consequences observed'' (though the decision maker cannot necessarily recognise when it was done before by inspecting the data).
 
-\begin{definition}[Diverse precedent]\label{def:diverse_precedent}
+\begin{definition}[Precedent]
+
+\end{definition}
+
+A further key assumption for Theorem \ref{th:latent_to_observable} is an assumption we call \emph{conditional absolute continuity}. The basic idea is that, after a decision maker decides that $\RV{Y}_i$ is independent of $\RV{Z}_i$ given $\RV{X}_i$, the DM's model still maintains that the distribution of $\RV{G}^{\RV{EX}}_\RV{Z}$ conditional on  $\RV{G}^\RV{Y}_\RV{EXZ}$ is still absolutely continuous with respect to the Lebesgue measure. That is, after deciding on the conditional indepedence -- itself a measure 0 event with respect to the Lebesgue measure -- the conditional distribution of $\RV{G}^{\RV{EX}}_\RV{Z}$ does not also concentrate on a measure zero set. As we will see, this assumption can follow from some structural causal assumptions along with a version of the principle of independent causal mechanisms \cite{lemeire_replacing_2013}.
+
+\begin{definition}[Conditional absolute continuity]\label{def:diverse_precedent}
 Given a latent CIIR see-do model $(\prob{P}_\cdot,(\RV{E}_i,\RV{X}_i,\RV{Y}_i,\RV{Z}_i)_{i\in\mathbb{N}\cup\{c\}})$ with $E,X,Y$ and $Z$ all discrete, recall $\RV{G}$ is the directing random conditional of $(\prob{P}_\cdot,\RV{Z}_{\mathbb{N}},(\RV{E}_i,\RV{X}_i,\RV{Y}_i)_{i\in \mathbb{N}})$. 
 
 We say that the options $C$ have \emph{diverse precedent} with respect to $(\prob{P}_\cdot,(\RV{E}_i,\RV{X}_i,\RV{Y}_i,\RV{Z}_i)_{i\in\mathbb{N}\cup\{c\}})$ if $\prob{P}_\cdot$ satisfies the diversity condition:
@@ -118,7 +124,7 @@ An absolutely continuous structural decision model is a decision model $(\prob{P
 \end{itemize} 
 \end{definition}
 
-Note that the absolute continuity condition implies that, for arbitrary $U, V\subset A$, $\prob{P}_\cdot^{(\RV{H}^{\RV{X}^i}}_{\mathrm{Pa}_\graph{G}(\RV{X}^i))_{i\in U}|(\RV{H}^{\RV{X}^i}}_{\mathrm{Pa}_\graph{G}(\RV{X}^i))_{i\in V}\graph{G}}$ is almost surely absolutely continuous with respect to the uniform joint distribution on the space of parameters $(\RV{H}^{\RV{X}^i}_{\mathrm{Pa}_\graph{G}(\RV{X}^i)})_{i\in U}$. 
+The absolute continuity condition implies that, for arbitrary $U, V\subset A$, $\prob{P}_\cdot^{(\RV{H}^{\RV{X}^i}}_{\mathrm{Pa}_\graph{G}(\RV{X}^i))_{i\in U}|(\RV{H}^{\RV{X}^i}}_{\mathrm{Pa}_\graph{G}(\RV{X}^i))_{i\in V}\graph{G}}$ is almost surely absolutely continuous with respect to the uniform joint distribution on the space of parameters $(\RV{H}^{\RV{X}^i}_{\mathrm{Pa}_\graph{G}(\RV{X}^i)})_{i\in U}$. 
 
 Suppose we have an absolutely continuous structural decision model $(\prob{P}_\cdot,\Omega,C)$ where we have observed $\RV{Z}_i$ independent of $\RV{Y}_i$ given $\RV{X}_i$, and for which we have an arbitrary graph $\graph{G}$ with nodes $\node{E}, \node{X}, \node{Y}, \node{Z}$ satisfying the following three assumptions
 \begin{enumerate}

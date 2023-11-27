@@ -1,56 +1,54 @@
-This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: main.aux
 The style file: plainnat.bst
 A level-1 auxiliary file: appendix.aux
 Database file #1: library.bib
-Repeated entry---line 3071 of file library.bib
+Repeated entry---line 3172 of file library.bib
  : @article{fong_causal_2013
  :                          ,
 I'm skipping whatever remains of this entry
-Warning--empty journal in ngGraphAutoencoderApproach2019
+Warning--I didn't find a database entry for "janzingInformationgeometricApproachInferring2012"
 Warning--empty journal in saarela_role_2020
-Warning--empty publisher in spirtes_causation_1993
-Warning--empty booktitle in sunCausalInferenceChoosing2006
-You've used 54 entries,
+You've used 41 entries,
             2773 wiz_defined-function locations,
-            1031 strings with 18499 characters,
-and the built_in function-call counts, 25834 in all, are:
-= -- 2543
-> -- 1244
-< -- 52
-+ -- 426
-- -- 371
-* -- 2089
-:= -- 4019
-add.period$ -- 287
-call.type$ -- 54
-change.case$ -- 280
-chr.to.int$ -- 53
-cite$ -- 112
-duplicate$ -- 1174
-empty$ -- 2081
-format.name$ -- 467
-if$ -- 5473
+            946 strings with 15379 characters,
+and the built_in function-call counts, 19367 in all, are:
+= -- 1962
+> -- 831
+< -- 41
++ -- 287
+- -- 245
+* -- 1545
+:= -- 3017
+add.period$ -- 228
+call.type$ -- 41
+change.case$ -- 200
+chr.to.int$ -- 40
+cite$ -- 83
+duplicate$ -- 898
+empty$ -- 1594
+format.name$ -- 318
+if$ -- 4122
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 56
-newline$ -- 395
-num.names$ -- 222
-pop$ -- 458
+missing$ -- 43
+newline$ -- 311
+num.names$ -- 170
+pop$ -- 296
 preamble$ -- 1
-purify$ -- 230
+purify$ -- 162
 quote$ -- 0
-skip$ -- 872
+skip$ -- 652
 stack$ -- 0
-substring$ -- 940
-swap$ -- 172
-text.length$ -- 13
+substring$ -- 777
+swap$ -- 128
+text.length$ -- 9
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 564
-warning$ -- 4
-while$ -- 234
+type$ -- 431
+warning$ -- 1
+while$ -- 186
 width$ -- 0
-write$ -- 945
+write$ -- 745
 (There was 1 error message)
