@@ -7,7 +7,7 @@ Our approach to causal inference is based on probability theory. This section ga
 Section \ref{sec:standard_prob} introduces the notation used in this paper. Because decision models are stochastic functions rather than probability measures (Section \ref{sec:probability_sets}), we make use a generalisation of conditional independence called \emph{extended conditional independence}, explained in Section \ref{sec:eci} -- the content of these sections may be less familiar.
 
 
-\subsection{Probability Notation}\label{sec:standard_prob}
+\subsection{Notation}\label{sec:standard_prob}
 
 We refer a reader to \citet{cinlar_probability_2011} chapters 1, 2 and 4 for an introduction to the probability theory we use use in this paper. Here we offer a brief overview of our notation.
 
@@ -22,6 +22,8 @@ A sequence of random variables $(\RV{X},\RV{Y})$ is itself a random variable $\o
 We denote by $\Delta(A)$ the set of all probability measures on $(A,\sigalg{A})$.
 
 We use the Iverson bracket $\llbracket \mathrm{condition} \rrbracket$ for the function that evaluates to $1$ if \emph{condition} is true and $0$ if it is false. The Dirac measure $\delta_x \in \Delta(X)$ is the probability measure for which $\delta_x(A) = \llbracket x\in A \rrbracket$.
+
+A number in square brackets $[m]$ refers to the set $\{1, ..., m \}$.
 
 \section{Decision Models}
 
@@ -88,7 +90,7 @@ In a decision model, we say that two random variables are almost surely equal if
 	\prob{P}_\alpha(\RV{X}\neq \RV{Y}) &= 0 &\forall \alpha\in C
 \end{align}
 
-We say that two random variables are almost surely equal on a particular $\alpha'\in C$ if they are almost surely equal for $\alpha'$ but not necessarily for any other element of $O$:
+We say that two random variables are almost surely equal on a particular $\alpha'\in C$ if they are almost surely equal for $\alpha'$ but not necessarily for any other element of $C$:
 
 \begin{align}
 	\RV{X} &\overset{\alpha'}{\cong} \RV{Y}\\
@@ -124,4 +126,3 @@ Nondescendents of $V_i$, $\mathrm{ND}(V_i)$, are nodes $V_j$ such that $V_i$ is 
 Given a set of variables $(\RV{V}_i)_{i\in [k]}$, an \emph{associated} directed acyclic graph $\mathcal{G}=(\mathcal{V},\mathcal{E})$ is a graph with a node $V_i$ for each variable $\RV{V}_i$. We define the parents of a variable via this association: $\mathrm{Pa}_\mathcal{G}(\RV{V}_i)=\{\RV{V}_j|(V_j,V_i)\in \sigalg{E}\}$.
 \end{definition}
 
-\todo{parameters}
