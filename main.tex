@@ -51,19 +51,19 @@ Sometimes we want to make decisions supported by data. Structural causal models 
 
 It is a well-known difficulty of causal inference that the available data may not be sufficient to identify the causal effects of interest. A further difficulty is that the options a decision maker has available often do not have a simple correspondence to interventions on the learned causal graph. This means that, even if a structural model is known, additional knowledge is needed to determine how the consequences of actions should be modeled. This may generally be particularly problematic in settings that call for causal discovery, because in such situations we do not have detailed prior knoweldge about causal relationships.
 
-Consider, for example, an author who wants to know what genre to pick for their next book in order to maximise sales -- science fiction or romance. Suppose that, using a large dataset from a bookseller, they are able to learn a structural model. The exact nature of the model is not critical for the example, but for concreteness we will suppose it contains three variables: sales $\RV{S}$, genre $\RV{G}$ (as judged by the bookseller) and ``covariates'' $\RV{C}$, which is actually a pair of variables: a statistic based on the author's historical sales record, and a statistic based on recent trends in genre sales.
+Consider, for example, an author who wants to know what genre to pick for their next book in order to maximise sales -- science fiction or romance. Suppose that, using a large dataset from a bookseller, they are able to learn a structural model. The exact nature of the model is not critical for the example, but for concreteness we will suppose it contains three variables: sales $\RV{S}$, genre $\RV{G}$ (as judged by the bookseller) and ``covariates'' $\RV{V}$, which is actually a pair of variables: a statistic based on the author's historical sales record, and a statistic based on recent trends in genre sales.
 
 \begin{align}
   \tikzfig{dag_book_model}\label{eq:dag_book_model}
 \end{align}
 
-The theory of perfect interventions tells us that, given a distribution $\prob{P}(\RV{S},\RV{G},\RV{C})$ estimated from the data, an intervention on genre will yield the intervened distribution
+The theory of perfect interventions tells us that, given a distribution $\prob{P}(\RV{S},\RV{G},\RV{V})$ estimated from the data, an intervention on genre will yield the intervened distribution
 
 \begin{align}
-  \prob{P}(\RV{S},\RV{C}|\mathrm{do}(\RV{G}=x)) = \prob{P}(\RV{C})\prob{P}(\RV{S}|\RV{C},\RV{G}=x)\label{eq:perfect_intervention}
+  \prob{P}(\RV{S},\RV{V}|\mathrm{do}(\RV{G}=x)) = \prob{P}(\RV{V})\prob{P}(\RV{S}|\RV{V},\RV{G}=x)\label{eq:perfect_intervention}
 \end{align}
 
-Suppose that the conditional $\prob{P}(\RV{S}|\RV{C},\RV{G})$ tells us that at any level of author skill, given observed recent sales trends, romance novels are expected to outsell science fiction novels. This seems to suggest that the author is well-advised to write a romance novel.
+Suppose that the conditional $\prob{P}(\RV{S}|\RV{V},\RV{G})$ tells us that at any level of author skill, given observed recent sales trends, romance novels are expected to outsell science fiction novels. This seems to suggest that the author is well-advised to write a romance novel.
 
 However, there is a difference between deciding to write a romance novel and actually writing one. Having made the decision, one is not guaranteed to end up having written a romance novel (at least, according to the bookseller) -- or even having written a novel at all. Furthermore, there are an enormous number of different ways to end up with a book classed as ``romance''. The author could, for example, write any novel at all and press booksellers to label it ``romance''. Even if they do write a book that is honestly classed as ``romance'', there are an enormous number of different books that qualify, and many of these different books are likely to have different sales prospects.
 
