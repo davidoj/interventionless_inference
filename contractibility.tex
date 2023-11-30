@@ -141,7 +141,7 @@ The proof of the theorem is involved, and can be found in its entirety Appendix 
 \subsection{Preliminaries}\label{sec:rep_theorem_background}
 
 \begin{definition}[Input count variable]\label{def:count_of_inputs}
-Given a sequential input-output model $(\prob{P}_C,\RV{D},\RV{Y})$ with countable $D$, $\#_{j}^k$ is the variable
+Given a sequential input-output model $(\prob{P}_\cdot,\RV{D},\RV{Y})$ with countable $D$, $\#_{j}^k$ is the variable
 \begin{align}
     \#_{\RV{D}_{\cdot}=j}^k := \sum_{i=1}^{k-1} \llbracket \RV{D}_i = j \rrbracket
 \end{align}
@@ -151,7 +151,7 @@ That is, $\#_{\RV{D}_{\cdot}=j}^k$ is equal to the number of times $\RV{D}_i=j$ 
 If we have an infinite sequence of pairs $(\RV{D}_i,\RV{Y}_i)$, we can wrap the sequence $\RV{Y}$ into a table $\RV{Y}^D$ such that $\RV{Y}^D_{11}$ is equal to the value of the first $\RV{Y}_i$ such that $\RV{D}_i=1$, $\RV{Y}^D_{21}$ is equal to the value of the second such $\RV{Y}_i$ and so forth. We call it a ``tabulated conditional'' because, under the assumption of CIIRs, we can evaluate a conditional $\prob{P}_\alpha^{\RV{Y}|\RV{D}}(\cdot|d_1,d_2,...)$ by ``looking up'' the marginal distribution $\prob{P}_\alpha^{\RV{Y}^D_{1 d_1}\RV{Y}^D_{2 d_2}...}$ over the appropriate elements of $\RV{Y}^D$.
 
 \begin{definition}[Tabulated conditional distribution]\label{def:tab_cd}
-Given a sequential input-output model $(\prob{P}_C,\RV{D},\RV{Y})$ on $(\Omega,\sigalg{F})$, define the \emph{tabulated conditional distribution} $\RV{Y}^D:\Omega\to Y^{\mathbb{N}\times D}$ by
+Given a sequential input-output model $(\prob{P}_\cdot,\RV{D},\RV{Y})$ on $(\Omega,\sigalg{F})$, define the \emph{tabulated conditional distribution} $\RV{Y}^D:\Omega\to Y^{\mathbb{N}\times D}$ by
 \begin{align}
     \RV{Y}^D_{ij} = \sum_{k=1}^{\infty} \llbracket \#_{\RV{D}_{\cdot}=j}^k = i\rrbracket \llbracket \RV{D}_k = j \rrbracket \RV{Y}_k
 \end{align}
@@ -161,7 +161,7 @@ That is, the $(i,j)$-th coordinate of $\RV{Y}^D$ is equal to the value of $\RV{Y
 The \emph{directing random measure} of a sequence of exchangeable variables is defined as the map from the set of events of each variable in the sequence the limit of normalised partial sums of indicator functions over that set \citep{kallenberg_basic_2005}. The directing random measure is a probability measure. For completeness, we also define a directing random measure in the case that the relevant limit does not exist, although we are only practically interested in using the definition where the limit does exist.
 
 \begin{definition}[Directing random measure]\label{def:dir_rand_meas}
-Given a probability set $(\prob{P}_C,\Omega,\sigalg{F})$ and a sequence $\RV{X}:=(\RV{X}_i)_{i\in\mathbb{N}}$, the directing random measure of $\RV{X}$ written $\RV{H}:\Omega\to \Delta(X)$ is the function
+Given a decision model $(\prob{P}_\cdot,\Omega,\sigalg{F})$ and a sequence $\RV{X}:=(\RV{X}_i)_{i\in\mathbb{N}}$, the directing random measure of $\RV{X}$ written $\RV{H}:\Omega\to \Delta(X)$ is the function
 \begin{align}
     \RV{H} := A \mapsto \begin{cases}
     \lim_{n\to \infty}\frac{1}{n} \sum_{i=1}^{\infty} \mathds{1}_{A}(\RV{X}_{i}) & \text{this limit exists for all }\alpha\in C\\
@@ -173,7 +173,7 @@ Given a probability set $(\prob{P}_C,\Omega,\sigalg{F})$ and a sequence $\RV{X}:
 Given input and output sequences $\RV{D}$ and $\RV{Y}$ we define the \emph{directing random conditional} as the directing random measure of the tabulated conditional $\RV{Y}^D$ interpreted as a sequence of column vectors $((\RV{Y}^D_{1j})_{j\in D},(\RV{Y}^D_{2j})_{j\in D},...)$.
 
 \begin{definition}[Directing random conditional]\label{def:dir_rand_cond}
-Given a sequential input-output model $(\prob{P}_C,\RV{D},\RV{Y})$, we will say the directing random conditional $\RV{H}:\Omega\to \Delta(Y^D)$ is the function
+Given a sequential input-output model $(\prob{P}_\cdot,\RV{D},\RV{Y})$, we will say the directing random conditional $\RV{H}:\Omega\to \Delta(Y^D)$ is the function
 \begin{align}
     \RV{H} := \bigtimes_{j\in D} A_j \mapsto \begin{cases}
     \lim_{n\to \infty}\frac{1}{n} \sum_{i=1}^{\infty} \prod_{j\in D} \mathds{1}_{A_j}(\RV{Y}^D_{ij}) & \text{this limit exists}\\
@@ -192,18 +192,18 @@ Lemma \ref{th:table_rep_kernel} shows that an IO contractible conditional distri
 
 To prove Lemma \ref{th:table_rep_kernel}, we assume that the set of input sequences in which each value appears infinitely often has measure 1 for every option in $C$. Without this assumption, we would have to accept positive probability that we run out of $\RV{D}_i$s taking some value $j\in D$ preventing us from filling out the ``tabulated conditional'' $\RV{Y}^D$ correctly. We call this side condition \emph{infinite support}.
 
-\begin{definition}[Infinite support]\label{def:infinite_support}
-Given a sequential input-output model $(\prob{P}_C,\RV{D},\RV{Y})$ with $D$ countable if, letting $E\subset D^{\mathbb{N}}$ be the set of all sequences such that for all $j\in D$
+\begin{definition}[Almost surely infinite]\label{def:infinite_support}
+Given a sequential input-output model $(\prob{P}_\cdot,\RV{D},\RV{Y})$ with $D$ countable if, letting $E\subset D^{\mathbb{N}}$ be the set of all sequences such that for all $j\in D$
 \begin{align}
     x\in E \implies \sum_{i=0}\llbracket x_i = j\rrbracket = \infty
 \end{align}
-we have $\prob{P}_\alpha^{\RV{D}|\RV{W}}(E|w)=1$ for all $\alpha,w$, then we say $\RV{D}$ is \emph{infinitely supported over }$\RV{W}$.
+we have $\prob{P}_\alpha^{\RV{D}|\RV{W}}(E|w)=1$ for all $\alpha,w$, then we say $\RV{D}$ is \emph{almost surely infinite } over $\RV{W}$.
 \end{definition}
 
 The key property of the tabulated conditional is that we can evaluate the regular conditional $\prob{P}_\alpha^{\RV{Y}|\RV{WD}}$ by ``looking up'' the appropriate marginal of $\prob{P}_\alpha^{\RV{Y}^D}$.
 
 \begin{lemma}\label{th:table_rep_kernel}
-Suppose a sequential input-output model $(\prob{P}_C,\RV{D},\RV{Y})$ is given with $D$ countable and $\RV{D}$ infinitely supported over $\RV{W}$. Then for some $\RV{W}$, $\alpha$, $\prob{P}_\alpha^{\RV{Y}|\RV{WD}}$ is IO contractible if and only if
+Suppose a sequential input-output model $(\prob{P}_\cdot,\RV{D},\RV{Y})$ is given with $D$ countable and $\RV{D}$ infinitely supported over $\RV{W}$. Then for some $\RV{W}$, $\alpha$, $\prob{P}_\alpha^{\RV{Y}|\RV{WD}}$ is IO contractible if and only if
 \begin{align}
     \prob{P}_\alpha^{\RV{Y}|\RV{WD}}(\bigtimes_{i\in \mathbb{N}}A_i|w,(d_i)_{i\in \mathbb{N}}) &= \prob{P}_\alpha^{(\RV{Y}^D_{i d_i})_{i\in\mathbb{N}}|\RV{W}}(\bigtimes_{i\in \mathbb{N}}A_i|w)&\forall A_i\in \sigalg{Y}^{D}, w\in W, d_i\in D
 \end{align}
@@ -224,7 +224,7 @@ The full proof can be found in Appendix \ref{app:representation_proof}. Note tha
 Because the distribution $\prob{P}_\alpha^{\RV{Y}^D|\RV{W}}$ from Lemma \ref{th:table_rep_kernel} is row-exchangeable, the limit in the definition of the directing random conditional $\RV{H}$ exists almost surely (see Lemma \ref{lem:ciid_yd}).  In fact, we do not need the full sequence of pairs $(\RV{D},\RV{Y})$ to calculate $\RV{H}$; any subsequence $A\subset\mathbb{N}$ that satisfies the condition that $\RV{D}_A$ is infinitely supported over $\RV{W}$ is sufficient.
 
 \begin{theorem}\label{th:any_infinite_sequence}
-Suppose a sequential input-output model $(\prob{P}_C,\RV{D},\RV{Y})$ is given with $D$ countable,  $\RV{D}$ infinitely supported over $\RV{W}$ and for some $\RV{W}$, $\prob{P}_\alpha^{\RV{Y}|\RV{WD}}$ is IO contractible for all $\alpha$. Consider an infinite set $A\subset \mathbb{N}$, and let $\RV{D}_A:=(\RV{D}_i)_{i\in A}$ and $\RV{Y}_A:=(\RV{Y}_i)_{i\in A}$ such that $\RV{D}_A$ is also infinitely supported over $\RV{W}$. Then $\RV{H}_A$, the directing random conditional of $(\prob{P}_C,\RV{D}_A,\RV{Y}_A)$ is almost surely equal to $\RV{H}$, the directing random conditional of $(\prob{P}_C,\RV{D},\RV{Y})$.
+Suppose a sequential input-output model $(\prob{P}_\cdot,\RV{D},\RV{Y})$ is given with $D$ countable,  $\RV{D}$ infinitely supported over $\RV{W}$ and for some $\RV{W}$, $\prob{P}_\alpha^{\RV{Y}|\RV{WD}}$ is IO contractible for all $\alpha$. Consider an infinite set $A\subset \mathbb{N}$, and let $\RV{D}_A:=(\RV{D}_i)_{i\in A}$ and $\RV{Y}_A:=(\RV{Y}_i)_{i\in A}$ such that $\RV{D}_A$ is also infinitely supported over $\RV{W}$. Then $\RV{H}_A$, the directing random conditional of $(\prob{P}_\cdot,\RV{D}_A,\RV{Y}_A)$ is almost surely equal to $\RV{H}$, the directing random conditional of $(\prob{P}_\cdot,\RV{D},\RV{Y})$.
 \end{theorem}
 
 \begin{proof}
@@ -233,16 +233,16 @@ The strategy we pursue is to show that an arbitrary subsequence of $(\RV{D}_i,\R
 The proof is in Appendix \ref{app:representation_proof}.
 \end{proof}
 
-We are now ready to state the main result, Theorem \ref{th:ciid_rep_kernel}. Assuming a sequential input-output model $(\prob{P}_C,\RV{D},\RV{Y})$ (Definition \ref{def:seq_io}) with inputs $\RV{D}$ infinitely supported (Definition \ref{def:infinite_support}) over some random variable $\RV{W}$, $(\prob{P}_C,\RV{D},\RV{Y})$ is IO contractible over the same $\RV{W}$ if and only if the pairs $(\RV{D}_i, \RV{Y}_i)$ share conditionally independent and identical responses (Definition \ref{def:cii_rf}), given by the directing random conditional $\RV{H}$ (Definition \ref{def:dir_rand_cond}) and $(\prob{P}_C,\RV{D},\RV{Y})$ is weakly data-independent.
+We are now ready to state the main result, Theorem \ref{th:ciid_rep_kernel}. Assuming a sequential input-output model $(\prob{P}_\cdot,\RV{D},\RV{Y})$ (Definition \ref{def:seq_io}) with inputs $\RV{D}$ infinitely supported (Definition \ref{def:infinite_support}) over some random variable $\RV{W}$, $(\prob{P}_\cdot,\RV{D},\RV{Y})$ is IO contractible over the same $\RV{W}$ if and only if the pairs $(\RV{D}_i, \RV{Y}_i)$ share conditionally independent and identical responses (Definition \ref{def:cii_rf}), given by the directing random conditional $\RV{H}$ (Definition \ref{def:dir_rand_cond}) and $(\prob{P}_\cdot,\RV{D},\RV{Y})$ is weakly data-independent.
 
 \subsection{Statement of the representation theorem}\label{sec:reptheorem_statement}
 
 \begin{theorem}[Representation of IO contractible models]\label{th:ciid_rep_kernel}
-Suppose a sequential input-output model $(\prob{P}_C,\RV{D},\RV{Y})$ with sample space $(\Omega,\sigalg{F})$ is given with $D$ countable and $\RV{D}$ infinitely supported over $\RV{W}$. Then the following are equivalent:
+Suppose a sequential input-output model $(\prob{P}_\cdot,\RV{D},\RV{Y})$ with sample space $(\Omega,\sigalg{F})$ is given with $D$ countable and $\RV{D}$ infinitely supported over $\RV{W}$. Then the following are equivalent:
 \begin{enumerate}
     \item There is some $\RV{W}$ such that $\prob{P}_\alpha^{\RV{Y}|\RV{WD}}$ is IO contractible for all $\alpha$
-    \item For all $i$, $\RV{Y}_i\CI (\RV{Y}_{\neq i},\RV{D}_{\neq i},\text{C})|(\RV{H},\RV{D}_i)$ and for all $i,j, \alpha$ $$\prob{P}_\alpha^{\RV{Y}_i|\RV{H}\RV{D}_i}=\prob{P}_\alpha^{\RV{Y}_j|\RV{H}\RV{D}_j}$$
-    \item There is some $\kernel{L}:H\times X\kto Y$ such that for all $\alpha$, $$\prob{P}_\alpha^{\RV{Y}|\RV{DH}}(\bigtimes_{i\in\mathbb{N}} A_{i}|d,h)= \prod_{i\in\mathbb{N}} \prob{P}_C^{\RV{Y}_1|\RV{D}_1\RV{H}}(A_i|d_i,h)$$
+    \item For all $i$, $\RV{Y}_i\CI (\RV{Y}_{\neq i},\RV{D}_{\neq i})|(\RV{H}, \RV{D}_i, \RV{C})$ and for all $i,j, \alpha$ $$\prob{P}_\alpha^{\RV{Y}_i|\RV{H}\RV{D}_i}=\prob{P}_\alpha^{\RV{Y}_j|\RV{H}\RV{D}_j}$$
+    \item There is some $\kernel{L}:H\times D\kto Y$ such that for all $\alpha$, $$\prob{P}_\alpha^{\RV{Y}|\RV{DH}}(\bigtimes_{i\in\mathbb{N}} A_{i}|d,h)= \prod_{i\in\mathbb{N}} \kernel{L}(A_i|d_i,h)$$
 \end{enumerate}
 \end{theorem}
 
